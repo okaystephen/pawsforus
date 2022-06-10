@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <link rel="icon" href="/assets/img/logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+    <!-- TITLE -->
+    <title>PawsForUs - Login</title>
+</head>
+
+<!-- Move style content to css when nodejs is added -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    body {
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    .body-container {
+        min-width: 50vw;
+        height: 100vh;
+    }
+</style>
+
+<body>
+    <div class="container-fluid body-container d-flex flex-column justify-content-center align-items-left">
+        <div class="text-center p-5">
+            <img src="banner.png" style="max-width: 50vw;">
+        </div>
+        <div class="p-5">
+            <h2>Log In</h2>
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-warning w-100 mt-2">Log In</button>
+            </form>
+        </div>
+        <div class="p-5 text-center">
+            <u>Don't have an account? Sign up.</u>
+        </div>
+    </div>
+</body>
