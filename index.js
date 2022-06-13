@@ -3,12 +3,13 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const { create } = require("express-handlebars");
 const mongoose = require("mongoose");
-const { port } = require("./config/app");
-const logger = require("./middleware/logger");
-const sampleRoutes = require("./routes/web/sample-routes");
-const favicon = require("./middleware/favicon");
 const path = require("path");
+
+const { port } = require("./config/app");
 const database = require("./config/database");
+const logger = require("./middleware/logger");
+const favicon = require("./middleware/favicon");
+
 const app = express();
 
 // favicon and static files
@@ -43,12 +44,9 @@ mongoose.connect(
   }
 );
 
-// Mount routes here
-app.get("/", (req, res) => {
-  res.send("home page");
-});
-
-app.use("/samples", sampleRoutes);
+// Loads routes automatically, just follow the export format of route files
+require("./loaders/webLoader")(app);
+require("./loaders/apiLoader")(app);
 
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);
