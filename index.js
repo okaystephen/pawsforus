@@ -6,10 +6,12 @@ const { port } = require("./config/app");
 const logger = require("./middleware/logger");
 const sampleRoutes = require("./routes/web/sample-routes");
 const favicon = require("./middleware/favicon");
-
+const path = require("path");
 const app = express();
 
+// favicon and static files
 app.use(favicon);
+app.use(express.static(path.resolve(__dirname, "public")));
 
 // Logging
 app.use(logger);
@@ -29,7 +31,7 @@ app
 
 // Mount routes here
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.send('home page');
 });
 
 app.use("/samples", sampleRoutes);
