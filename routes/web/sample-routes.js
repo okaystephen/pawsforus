@@ -3,6 +3,7 @@ const sampleController = require("../../controllers/web/sample-controller");
 const sampleRoutes = express.Router();
 
 sampleRoutes.get("/", sampleController.index);
+sampleRoutes.get("/create", sampleController.create);
 
 sampleRoutes
   .route("/:id")
@@ -11,7 +12,6 @@ sampleRoutes
   .put(sampleController.update)
   .delete(sampleController.delete);
 
-sampleRoutes.get("/:id/create", sampleController.create);
 sampleRoutes.get("/:id/edit", sampleController.edit);
 
-module.exports = sampleRoutes;
+module.exports = { router: sampleRoutes, prefix: "/samples" };
