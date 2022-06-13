@@ -11,14 +11,6 @@ const publicStorage = multer.diskStorage({
 
 const fileUpload = multer({
   storage: publicStorage,
-  fileFilter: (req, file, cb) => {
-    // reject executable files from being uploaded
-    if (file.mimetype.split("/")[0] === "application") {
-      return cb(null, false);
-    }
-
-    return cb(null, true);
-  },
 });
 
 module.exports = fileUpload;
