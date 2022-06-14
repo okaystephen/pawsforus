@@ -4,17 +4,19 @@ const cors = require("cors");
 const { create } = require("express-handlebars");
 const mongoose = require("mongoose");
 const path = require("path");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 const { port } = require("./config/app");
 const database = require("./config/database");
 const logger = require("./middleware/logger");
 const favicon = require("./middleware/favicon");
+const authService = require("./services/auth-service");
 
 const app = express();
 
 // favicon and static files
 app.use(favicon);
-app.use(express.static(path.resolve(__dirname, "public")));
 app.use(express.static(path.resolve(__dirname, "assets")));
 
 // Logging
@@ -32,6 +34,19 @@ app
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
   .use(cors());
+
+// Session
+app.use(
+  session({
+    secret: "s",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: database.mongodb.url }),
+  })
+);
+
+// Authentication
+app.use(authService.initialize()).use(authService.session());
 
 // MongoDB
 mongoose.connect(

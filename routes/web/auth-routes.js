@@ -1,28 +1,39 @@
 const express = require("express");
-const authController = require("../../controllers/web/auth-controller");
+const {
+  showRegister,
+  showLogin,
+  logout,
+  postRegister,
+  postLogin,
+  home,
+  match,
+} = require("../../controllers/web/auth-controller");
+const {
+  registerValidator,
+  loginValidator,
+} = require("../../validators/auth-validator");
+const ensureLoggedOut = require("../../middleware/ensure-logged-out");
+const ensureLoggedIn = require("../../middleware/ensure-logged-in");
 const authRoutes = express.Router();
-
-// Validators
-const user_authValidator = require('../../validators/user_authValidator.js');
 
 authRoutes
   .route("/register")
-  .get(authController.showRegister)
-  .post(user_authValidator.registerValidation(), authController.postRegister);
+  .get(ensureLoggedOut, showRegister)
+  .post(ensureLoggedOut, registerValidator, postRegister);
 
 authRoutes
-  .route("/")
-  .get(authController.showLogin)
-  .post(authController.postLogin);
+  .route("/login")
+  .get(ensureLoggedOut, showLogin)
+  .post(ensureLoggedOut, loginValidator, postLogin);
 
+// set index as login page
+authRoutes.route("/").get((req, res) => res.redirect("/login"));
+authRoutes.route("/match").get(match);
+
+authRoutes.route("/home").get(home);
 authRoutes
-  .route("/home")
-  .get(authController.home);
-
-authRoutes
-  .route("/match")
-  .get(authController.match);
-
-authRoutes.route("/logout").post(authController.logout);
+  .route("/whoami")
+  .get(ensureLoggedIn, (req, res) => res.send(req.user));
+authRoutes.route("/logout").post(ensureLoggedIn, logout);
 
 module.exports = { router: authRoutes, prefix: "/" };

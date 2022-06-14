@@ -4,7 +4,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <link rel="icon" href="/assets/img/logo.ico" />
+    <link rel="icon" href="/img/logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <script src="/assets/js/form-validator.js"></script>
+    <script src="/js/form-validator.js"></script>
 
     <!-- TITLE -->
     <title>PawsForUs - Register</title>
@@ -42,35 +42,47 @@
         </div>
         <div class="p-4">
             <h4>Create Account</h4>
-            <form class="needs-validation" method="POST">
+            {{!-- Error alert --}}
+            {{> error-alert errors=errors}}
+            <form class="needs-validation {{#if errors}}was-validated{{/if}}" method="POST" novalidate>
                 <div class="form-group">
                     <label for="user_name">Your name</label>
-                    <input type="text" class="form-control" id="user_name" name="user_name" value="{{input.user_name}}" placeholder="Enter name">
-                    <p style="color: red; font-size: 13px">
-                        {{details.user_nameError}}
-                    </p>
+                    <input type="text" class="form-control" id="user_name" name="full_name" placeholder="Enter name"
+                        value="{{inputs.full_name}}" required>
                 </div>
                 <div class="form-group">
                     <label for="user_email">Email address</label>
-                    <input type="email" class="form-control" id="user_email" name="user_email" aria-describedby="emailHelp"
-                        placeholder="Enter email" value="{{input.user_email}}">
+                    <input type="email" class="form-control" id="user_email" name="email" aria-describedby="emailHelp"
+                        placeholder="Enter email" value="{{inputs.email}}" required>
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                         else.</small>
                     <p style="color: red; font-size: 13px">
-                        {{details.user_emailError}}
+                        {{errors.email.msg}}
                     </p>
                 </div>
                 <div class="form-group">
                     <label for="user_pass">Password</label>
-                    <input type="password" class="form-control" id="user_pass" name="user_pass" value="{{input.user_pass}}" placeholder="Password">
+                    <input type="password" class="form-control" id="user_pass" name="password" placeholder="Password"
+                        required>
                     <p style="color: red; font-size: 13px">
-                        {{details.user_passError}}
+                        {{errors.password.msg}}
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
+                        placeholder="Confirm Password" required>
+                    <p style="color: red; font-size: 13px">
+                        {{errors.password_confirmation.msg}}
                     </p>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="user_agree" name="user_agree" value="true" required>
-                    <label class="form-check-label" for="user_agree">I agree to the <u>terms and
+                    <input type="checkbox" class="form-check-input" id="agree_tnc" name="agree_tnc" required>
+                    <label class="form-check-label" for="agree_tnc">I agree to the <u>terms and
                             conditions</u></label>
+                    <p style="color: red; font-size: 13px">
+                        {{errors.agree_tnc.msg}}
+                    </p>
                 </div>
                 <button type="submit" class="btn btn-warning w-100 mt-2">Log In</button>
             </form>
@@ -80,3 +92,9 @@
         </div>
     </div>
 </body>
+
+<script>
+    $('input[type=checkbox]').on('change', function () {
+        this.value = this.checked ? 1 : 0
+    }).change();
+</script>
