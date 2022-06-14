@@ -44,6 +44,8 @@
         </div>
         <div class="p-4">
             <h4>Log In</h4>
+            {{!-- Error alert --}}
+            {{> error-alert errors=errors}}
             <form class="needs-validation" method="POST" novalidate>
                 <div class="form-group">
                     <label for="user_email">Email address</label>
@@ -58,8 +60,8 @@
                         required>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="user_remember">
-                    <label class="form-check-label" for="user_remember">Remember me</label>
+                    <input type="checkbox" class="form-check-input" id="remember_me">
+                    <label class="form-check-label" for="remember_me" name="remember_me">Remember me</label>
                 </div>
                 <button type="submit" class="btn btn-warning w-100 mt-2">Log In</button>
             </form>

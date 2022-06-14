@@ -1,4 +1,4 @@
-const { body, check } = require("express-validator");
+const { body, oneOf } = require("express-validator");
 
 const matchesPassword = (value, { req }) => {
   if (value !== req.body.password) {
@@ -10,7 +10,7 @@ const matchesPassword = (value, { req }) => {
 
 const authValidator = {
   registerValidator: [
-    check("email")
+    body("email")
       .exists()
       .withMessage("Email is required")
       .isEmail()
@@ -27,6 +27,13 @@ const authValidator = {
     body("agree_tnc", "You must agree to the Terms & Conditions")
       .exists()
       .isBoolean({ loose: true }),
+  ],
+  loginValidator: [
+    body("email", "Incorrect email or password").exists().isEmail(),
+    body("password", "Incorrect email or password")
+      .exists()
+      .isLength({ min: 8 }),
+      body('remember_me').optional()
   ],
 };
 

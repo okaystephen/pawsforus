@@ -7,20 +7,27 @@ const {
   postLogin,
   home,
 } = require("../../controllers/web/auth-controller");
-const { registerValidator } = require("../../validators/auth-validator");
+const {
+  registerValidator,
+  loginValidator,
+} = require("../../validators/auth-validator");
 const validate = require("../../middleware/validate");
 const authService = require("../../services/auth-service");
+const ensureLoggedOut = require("../../middleware/ensure-logged-out");
+const ensureLoggedIn = require("../../middleware/ensure-logged-in");
 const authRoutes = express.Router();
 
 authRoutes
   .route("/register")
-  .get(showRegister)
-  .post(validate(registerValidator, true), postRegister);
+  .get(ensureLoggedOut, showRegister)
+  .post(ensureLoggedOut, validate(registerValidator, true), postRegister);
 
 authRoutes
   .route("/login")
-  .get(showLogin)
+  .get(ensureLoggedOut, showLogin)
   .post(
+    ensureLoggedOut,
+    validate(loginValidator, true),
     authService.authenticate("local", {
       failureRedirect: "/login",
       failureMessage: true,
@@ -28,10 +35,11 @@ authRoutes
     postLogin
   );
 
-authRoutes.route("/").get(showLogin).post(postLogin);
+// set index as login page
+authRoutes.route("/").get((req, res) => res.redirect("/login"));
 
 authRoutes.route("/home").get(home);
 
-authRoutes.route("/logout").post(logout);
+authRoutes.route("/logout").post(ensureLoggedIn, logout);
 
 module.exports = { router: authRoutes, prefix: "/" };

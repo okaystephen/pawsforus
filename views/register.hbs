@@ -43,15 +43,7 @@
         <div class="p-4">
             <h4>Create Account</h4>
             {{!-- Error alert --}}
-            {{#if errors}}
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    {{#each errors as |error|}}
-                    <li>{{error.msg}}</li>
-                    {{/each}}
-                </ul>
-            </div>
-            {{/if}}
+            {{> error-alert errors=errors}}
             <form class="needs-validation {{#if errors}}was-validated{{/if}}" method="POST" novalidate>
                 <div class="form-group">
                     <label for="user_name">Your name</label>

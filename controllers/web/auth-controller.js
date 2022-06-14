@@ -4,17 +4,42 @@ const hashingConfig = require("../../config/hashing");
 
 const authController = {
   showLogin: (req, res) => {
-    res.render("main", {
-      layout: false,
-    });
+    let errors = null;
+    // validation error
+    if (req.session.errors) {
+      errors = req.session.errors;
+      req.session.errors = null;
+    }
+    // Passport error
+    else if (req.session.messages instanceof Array) {
+      errors = {
+        email: {
+          msg: req.session.messages[0],
+          value: "",
+          param: "email",
+          location: "body",
+        },
+      };
+
+      req.session.messages = null;
+    }
+
+    if (errors) res.status(400);
+
+    res.render("main", { layout: false, errors });
   },
   postLogin: (req, res) => {
     //if no errors
     res.redirect("/home");
   },
   showRegister: (req, res) => {
-    const errors = req.session.errors;
-    req.session.errors = null;
+    let errors = null;
+    if (req.session.errors) {
+      errors = req.session.errors;
+      req.session.errors = null;
+    }
+
+    if (errors) res.status(400);
 
     res.render("register", { layout: false, errors });
   },
@@ -49,7 +74,12 @@ const authController = {
     });
   },
   logout: (req, res) => {
-    res.send("todo logout");
+    req.logout((err) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      return res.redirect("/");
+    });
   },
 };
 
