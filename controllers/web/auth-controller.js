@@ -2,47 +2,67 @@ const User = require("../../models/User");
 const bcrypt = require("bcrypt");
 const hashingConfig = require("../../config/hashing");
 const { validationResult, matchedData } = require("express-validator");
+const authService = require("../../services/auth-service");
 
 const authController = {
   showLogin: (req, res) => {
-    let errors = null;
-    // validation error
-    if (req.session.errors) {
-      errors = req.session.errors;
-      req.session.errors = null;
-    }
-    // Passport error
-    else if (req.session.messages instanceof Array) {
-      errors = {
-        email: {
-          msg: req.session.messages[0],
-          value: "",
-          param: "email",
-          location: "body",
-        },
-      };
-
-      req.session.messages = null;
-    }
-
-    if (errors) res.status(400);
-
-    res.render("main", { layout: false, errors });
+    res.render("main", { layout: false });
   },
-  postLogin: (req, res) => {
+  postLogin: (req, res, next) => {
+    const errors = validationResult(req);
+    const matched = matchedData(req, { locations: ["body"] });
+
+    // validation error
+    if (!errors.isEmpty()) {
+      return res.status(400).render("main", {
+        layout: false,
+        errors: errors.mapped(),
+        inputs: matched,
+      });
+    }
+
+    authService.authenticate("local", function (err, user, info) {
+      if (err) return next(err);
+      if (!user) {
+        const passportErrors = {
+          email: {
+            msg: info,
+            value: "",
+            param: "email",
+            location: "body",
+          },
+        };
+        return res.status(400).render("main", {
+          layout: false,
+          errors: passportErrors,
+          inputs: matched,
+        });
+      }
+      req.login(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+
+        return res.redirect("/home");
+      });
+    })(req, res, next);
+    // }
+    // Passport error
+    // else if (req.session.messages instanceof Array) {
+
+    //   req.session.messages = null;
+    //   return res.status(400).render("main", {
+    //     layout: false,
+    //     errors: passportErrors,
+    //     inputs: matched,
+    //   });
+    // }
+
     //if no errors
-    res.redirect("/home");
+    // res.redirect("/home");
   },
   showRegister: (req, res) => {
-    let errors = null;
-    if (req.session.errors) {
-      errors = req.session.errors;
-      req.session.errors = null;
-    }
-
-    if (errors) res.status(400);
-    console.log(req.body);
-    res.render("register", { layout: false, errors, inputs: req.body });
+    res.render("register", { layout: false });
   },
   postRegister: async (req, res) => {
     const errors = validationResult(req);
