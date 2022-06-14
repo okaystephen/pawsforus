@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <link rel="icon" href="/img/logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/form-validator.js"></script>
+    <script src="https://kit.fontawesome.com/7e6ab4004f.js" crossorigin="anonymous"></script>
+
+    <!-- TITLE -->
+    <title>PawsForUs - Add Pet</title>
+
+</head>
+
+<body>
+    <div class="container-fluid body-container d-flex flex-column justify-content-start align-items-left py-4">
+        <div class="p-4 text-left d-flex justify-content-between align-items-center">
+            <a class="link-black" href="/register"><i class="fa-solid fa-arrow-left fa-2xl"></i></a>
+            <h1 class="header-gradient pt-2">Add Pet Profile</h1>
+        </div>
+        <div class="px-4 py-2 overflow-auto">
+            <form class="needs-validation" method="POST" novalidate>
+                <div class="form-group">
+                    <label for="pet_name">Name</label>
+                    <input type="text" class="form-control" id="pet_name" placeholder="Enter name" required>
+                </div>
+                <div class="form-group">
+                    <label for="pet_about">About Me</label>
+                    <textarea class="form-control" id="pet_about" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pet_birth">Birthdate</label>
+                    <input type="date" class="form-control" id="pet_birth" required>
+                </div>
+                <div class="form-group">
+                    <label for="pet_breed">Breed</label>
+                    <input type="text" class="form-control" id="pet_breed" placeholder="Enter breed" required>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="pet_gender">Gender</label>
+                            <input type="text" class="form-control" id="pet_gender" placeholder="Enter gender" required>
+                        </div>
+                        <div class="col">
+                            <label for="pet_weight">Weight</label>
+                            <input type="text" class="form-control" id="pet_weight" placeholder="Enter weight" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pet_status">Status</label>
+                    <input type="text" class="form-control" id="pet_status" placeholder="Enter status" required>
+                </div>
+                <div class="form-group">
+                    <label for="pet_images">Images</label>
+                    <input type="file" class="form-control-file" id="pet_images" required>
+                </div>
+                <button type="submit" class="btn btn-warning w-100 mt-2">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>

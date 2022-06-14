@@ -94,7 +94,7 @@ const authController = {
         if (err) {
           res.status(500).send(err);
         }
-        return res.redirect("/home");
+        return res.redirect("/select");
       });
     } catch (error) {
       return res.status(500).send(error);
@@ -115,6 +115,16 @@ const authController = {
   },
   match: (req, res) => {
     res.render("match", {
+      layout: false,
+    });
+  },
+  select: (req, res) => {
+    res.render("select", {
+      layout: false,
+    });
+  },
+  addpet: (req, res) => {
+    res.render("add-pet", {
       layout: false,
     });
   },

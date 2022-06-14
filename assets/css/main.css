@@ -37,7 +37,7 @@ body {
 }
 
 .select-card {
-    background: url(/assets/img/select-card-one.png), linear-gradient(92.15deg, #FFE03C 0%, #FFA800 100%);
+    background: url(/img/select-card-one.png), linear-gradient(92.15deg, #FFE03C 0%, #FFA800 100%);
 
     font-weight: 700 !important;
     text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);

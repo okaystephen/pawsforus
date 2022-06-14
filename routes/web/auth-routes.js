@@ -7,6 +7,8 @@ const {
   postLogin,
   home,
   match,
+  select,
+  addpet,
 } = require("../../controllers/web/auth-controller");
 const {
   registerValidator,
@@ -26,11 +28,14 @@ authRoutes
   .get(ensureLoggedOut, showLogin)
   .post(ensureLoggedOut, loginValidator, postLogin);
 
+
+authRoutes.route("/add-pet").get(addpet);
+
 // set index as login page
 authRoutes.route("/").get((req, res) => res.redirect("/login"));
 authRoutes.route("/match").get(match);
-
 authRoutes.route("/home").get(home);
+authRoutes.route("/select").get(select);
 authRoutes
   .route("/whoami")
   .get(ensureLoggedIn, (req, res) => res.send(req.user));
