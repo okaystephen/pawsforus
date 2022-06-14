@@ -18,6 +18,7 @@ const app = express();
 // favicon and static files
 app.use(favicon);
 app.use(express.static(path.resolve(__dirname, "public")));
+app.use(express.static(path.resolve(__dirname, "assets")));
 
 // Logging
 app.use(logger);
@@ -62,7 +63,7 @@ mongoose.connect(
 
 // Loads routes automatically, just follow the export format of route files
 require("./loaders/webLoader")(app);
-require("./loaders/apiLoader")(app);
+//require("./loaders/apiLoader")(app);
 
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);

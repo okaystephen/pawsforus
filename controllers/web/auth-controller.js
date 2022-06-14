@@ -1,18 +1,52 @@
+const User = require("../../models/User");
+const bcrypt = require("bcrypt");
+const hashingConfig = require("../../config/hashing");
+
 const authController = {
   showLogin: (req, res) => {
-    res.send("login form");
+    res.render("main", {
+      layout: false,
+    });
   },
-  login: (req, res) => {
-    res.send("todo login");
+  postLogin: (req, res) => {
+    //if no errors
+    res.redirect("/home");
   },
   showRegister: (req, res) => {
     const errors = req.session.errors;
     req.session.errors = null;
 
-    res.render("create-account", { layout: false, errors });
+    res.render("register", { layout: false, errors });
   },
-  register: (req, res) => {
-    res.send('"todo register"');
+  postRegister: async (req, res) => {
+    //if no errors
+    const { fullName, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(
+      password,
+      hashingConfig.bcrypt.saltRounds
+    );
+
+    try {
+      const user = await User.create({
+        fullName,
+        email,
+        password: hashedPassword,
+      });
+
+      req.login(user, (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+        return res.redirect("/home");
+      });
+    } catch (error) {
+      return res.status(500).send(error);
+    }
+  },
+  home: (req, res) => {
+    res.render("home", {
+      layout: false,
+    });
   },
   logout: (req, res) => {
     res.send("todo logout");
