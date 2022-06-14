@@ -44,6 +44,11 @@ const authController = {
   logout: (req, res) => {
     res.send("todo logout");
   },
+  match: (req, res) => {
+    res.render('match', {
+      layout: false
+    })
+  }
 };
 
 module.exports = authController;

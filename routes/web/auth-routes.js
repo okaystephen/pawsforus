@@ -17,7 +17,11 @@ authRoutes
 
 authRoutes
   .route("/home")
-  .get(authController.home)
+  .get(authController.home);
+
+authRoutes
+  .route("/match")
+  .get(authController.match);
 
 authRoutes.route("/logout").post(authController.logout);
 
