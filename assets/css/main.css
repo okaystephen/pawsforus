@@ -12,3 +12,26 @@ body {
 .link-black {
     color: black !important;
 }
+
+.header-weight {
+    font-weight: 900;
+}
+
+.header-gradient {
+    font-weight: 900;
+    background: linear-gradient(180deg, #FFA800 0%, #FFE03C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* text-fill-color: transparent; */
+    text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+}
+
+.nav-icon {
+    filter: drop-shadow(0px 0px 25px rgba(0, 0, 0, 0.05));
+}
+
+.footer-background {
+    background: linear-gradient(180deg, #FFA800 0%, #FFE03C 100%);
+    border-radius: 30px;
+}
