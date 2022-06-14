@@ -21,66 +21,33 @@
 </head>
 
 <body>
-    <section class="container-fluid body-container d-flex flex-column align-items-left" style="min-height: 100vh;">
-        <div class="text-left p-4 d-flex justify-content-between">
-            <h1 class="header-gradient">Chat</h1>
+
+    <section class="text-center container-fluid body-container justify-content-center d-flex align-items-center"
+        style="min-height: 100vh;">
+
+        <div class="text-left p-4 d-flex justify-content-between"
+            style="overflow: hidden;position: fixed;top: 0;width: 100%;">
+            <h1 class="header-gradient"><i class="fa-solid fa-angle-left"></i></h1>
+            <div class="text-center">
+                <h5>Chat with John</h5>
+                20 Seconds Ago
+            </div>
             <img src="/img/profile-icon.png" class="nav-icon">
+
         </div>
 
-        <div class="row px-4 d-flex justify-content-start align-items-center"
-            style="height: 100px; border-bottom: 1px solid rgb(210, 210, 210);">
-            <img src="/img/dog.png" style="max-height: 80%;">
-            <div class="mx-3">
-                <b style="font-size: 1.5em;">Lovely</b> <br />
-                Your dog is very cute!
-            </div>
+        <div>
+            <h5 class="header-gradient">Have some manners...</h5>
+            <h1 class="header-gradient"><b>Say Something!</b></h1>
         </div>
-        <div class="row px-4 d-flex justify-content-start align-items-center"
-            style="height: 100px; border-bottom: 1px solid rgb(210, 210, 210);">
-            <img src="/img/dog.png" style="max-height: 80%;">
-            <div class="mx-3">
-                <b style="font-size: 1.5em;">Lovely</b> <br />
-                Your dog is very cute!
-            </div>
-        </div>
-        <div class="row px-4 d-flex justify-content-start align-items-center"
-            style="height: 100px; border-bottom: 1px solid rgb(210, 210, 210);">
-            <img src="/img/dog.png" style="max-height: 80%;">
-            <div class="mx-3">
-                <b style="font-size: 1.5em;">Lovely</b> <br />
-                Your dog is very cute!
-            </div>
-        </div>
-        <div class="row px-4 d-flex justify-content-start align-items-center"
-            style="height: 100px; border-bottom: 1px solid rgb(210, 210, 210);">
-            <img src="/img/dog.png" style="max-height: 80%;">
-            <div class="mx-3">
-                <b style="font-size: 1.5em;">Lovely</b> <br />
-                Your dog is very cute!
-            </div>
-        </div>
-        <div class="row px-4 d-flex justify-content-start align-items-center"
-            style="height: 100px; border-bottom: 1px solid rgb(210, 210, 210);">
-            <img src="/img/dog.png" style="max-height: 80%;">
-            <div class="mx-3">
-                <b style="font-size: 1.5em;">Lovely</b> <br />
-                Your dog is very cute!
-            </div>
-        </div>
-        <div class="row px-4 d-flex justify-content-start align-items-center"
-            style="height: 100px; border-bottom: 1px solid rgb(210, 210, 210);">
-            <img src="/img/dog.png" style="max-height: 80%;">
-            <div class="mx-3">
-                <b style="font-size: 1.5em;">Lovely</b> <br />
-                Your dog is very cute!
-            </div>
-        </div>
+
     </section>
-    <div class="px-5 footer-background text-center d-flex flex-row justify-content-between align-items-center"
-        style="overflow: hidden;position: fixed;bottom: 0;width: 100%;">
-        <a href="/home"><img src="/img/nav-one.png"></a>
-        <a href="/"><img src="/img/nav-two.png"></a>
-        <a href="/chat"><img src="/img/nav-three.png"></a>
-        <img src="/img/nav-four.png">
+
+    <div class='row p-3 align-items-center' style="overflow: hidden;position: fixed;bottom: 0;width: 100%;">
+        <div class="col-1"><i class="fa-solid fa-camera"></i></div>
+        <div class="col">
+            <input class="form-control w-100" placeholder="Type a message...">
+        </div>
+        <div class="col-2">Send</div>
     </div>
 </body>

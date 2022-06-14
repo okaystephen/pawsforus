@@ -133,6 +133,11 @@ const authController = {
       layout: false,
     });
   },
+  chatbox: (req, res) => {
+    res.render("chatbox", {
+      layout: false,
+    });
+  },
 };
 
 module.exports = authController;

@@ -10,6 +10,7 @@ const {
   select,
   addpet,
   chat,
+  chatbox,
 } = require("../../controllers/web/auth-controller");
 const {
   registerValidator,
@@ -38,6 +39,7 @@ authRoutes.route("/match").get(match);
 authRoutes.route("/home").get(home);
 authRoutes.route("/select").get(select);
 authRoutes.route("/chat").get(chat);
+authRoutes.route("/chatbox").get(chatbox);
 authRoutes
   .route("/whoami")
   .get(ensureLoggedIn, (req, res) => res.send(req.user));
