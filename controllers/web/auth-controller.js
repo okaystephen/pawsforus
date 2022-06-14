@@ -1,3 +1,5 @@
+const { validationResult } = require('express-validator');
+
 const authController = {
   showLogin: (req, res) => {
     res.render('main', {
@@ -14,8 +16,25 @@ const authController = {
     })
   },
   postRegister: (req, res) => {
-    //if no errors
-    res.redirect('/home')
+    var errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      errors = errors.errors;
+      var details = {};
+
+      for (let i = 0; i < errors.length; i++)
+          details[errors[i].param + 'Error'] = errors[i].msg;
+
+      res.render('register', {
+        layout: false,
+        input: req.body,
+        details: details,
+      })
+
+    } else{
+       //no errors found, redirect to home
+       res.redirect('/home')
+    }
   },
   home: (req, res) => {
     res.render('home', {

@@ -42,25 +42,34 @@
         </div>
         <div class="p-4">
             <h4>Create Account</h4>
-            <form class="needs-validation" method="POST" novalidate>
+            <form class="needs-validation" method="POST">
                 <div class="form-group">
                     <label for="user_name">Your name</label>
-                    <input type="text" class="form-control" id="user_name" placeholder="Enter name" required>
+                    <input type="text" class="form-control" id="user_name" name="user_name" value="{{input.user_name}}" placeholder="Enter name">
+                    <p style="color: red; font-size: 13px">
+                        {{details.user_nameError}}
+                    </p>
                 </div>
                 <div class="form-group">
                     <label for="user_email">Email address</label>
-                    <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp"
-                        placeholder="Enter email" required>
+                    <input type="email" class="form-control" id="user_email" name="user_email" aria-describedby="emailHelp"
+                        placeholder="Enter email" value="{{input.user_email}}">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                         else.</small>
+                    <p style="color: red; font-size: 13px">
+                        {{details.user_emailError}}
+                    </p>
                 </div>
                 <div class="form-group">
                     <label for="user_pass">Password</label>
-                    <input type="password" class="form-control" id="user_pass" placeholder="Password" required>
+                    <input type="password" class="form-control" id="user_pass" name="user_pass" value="{{input.user_pass}}" placeholder="Password">
+                    <p style="color: red; font-size: 13px">
+                        {{details.user_passError}}
+                    </p>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="user_remember" required>
-                    <label class="form-check-label" for="user_remember">I agree to the <u>terms and
+                    <input type="checkbox" class="form-check-input" id="user_agree" name="user_agree" value="true" required>
+                    <label class="form-check-label" for="user_agree">I agree to the <u>terms and
                             conditions</u></label>
                 </div>
                 <button type="submit" class="btn btn-warning w-100 mt-2">Log In</button>
