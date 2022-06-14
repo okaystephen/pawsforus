@@ -7,16 +7,7 @@ const localStrategy = new LocalStrategy(
   { usernameField: "email" },
   async (email, password, done) => {
     try {
-      console.log("authService local strategy", email, password);
       const user = await User.findOne({ email });
-
-      const invalidInputResponse = {
-        email: {
-          value: email,
-          msg: "Incorrect email or password",
-          param: "email",
-        },
-      };
 
       if (!user) return done(null, false, { message: "Incorrect email or password" });
 

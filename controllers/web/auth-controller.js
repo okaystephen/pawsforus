@@ -4,7 +4,6 @@ const hashingConfig = require("../../config/hashing");
 
 const authController = {
   showLogin: (req, res) => {
-    console.log(req.session);
     res.render("main", {
       layout: false,
     });
@@ -21,7 +20,7 @@ const authController = {
   },
   postRegister: async (req, res) => {
     //if no errors
-    const { full_name: fullName, email, password } = req.body;
+    const { full_name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(
       password,
       hashingConfig.bcrypt.saltRounds
@@ -29,7 +28,7 @@ const authController = {
 
     try {
       const user = await User.create({
-        fullName,
+        full_name,
         email,
         password: hashedPassword,
       });
