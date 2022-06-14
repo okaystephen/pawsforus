@@ -128,6 +128,11 @@ const authController = {
       layout: false,
     });
   },
+  chat: (req, res) => {
+    res.render("chat", {
+      layout: false,
+    });
+  },
 };
 
 module.exports = authController;
