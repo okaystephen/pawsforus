@@ -5,12 +5,16 @@ const authRoutes = express.Router();
 authRoutes
   .route("/register")
   .get(authController.showRegister)
-  .post(authController.register);
+  .post(authController.postRegister);
 
 authRoutes
-  .route("/login")
+  .route("/")
   .get(authController.showLogin)
-  .post(authController.login);
+  .post(authController.postLogin);
+
+authRoutes
+  .route("/home")
+  .get(authController.home)
 
 authRoutes.route("/logout").post(authController.logout);
 

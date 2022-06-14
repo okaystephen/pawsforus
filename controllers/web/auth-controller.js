@@ -1,15 +1,26 @@
 const authController = {
   showLogin: (req, res) => {
-    res.send("login form");
+    res.render('main', {
+      layout: false
+    })
   },
-  login: (req, res) => {
-    res.send("todo login");
+  postLogin: (req, res) => {
+    //if no errors
+    res.redirect('/home')
   },
   showRegister: (req, res) => {
-    res.send("register form");
+    res.render('register', {
+      layout: false
+    })
   },
-  register: (req, res) => {
-    res.send("todo register");
+  postRegister: (req, res) => {
+    //if no errors
+    res.redirect('/home')
+  },
+  home: (req, res) => {
+    res.render('home', {
+      layout: false
+    })
   },
   logout: (req, res) => {
     res.send("todo logout");
