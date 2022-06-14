@@ -17,18 +17,19 @@
 
 ```
 ./
-├─ config/              // configuration variables
-├─ controllers/
-│  ├─ api/              // for REST API
-│  ├─ web/              // for rendering views
-├─ helpers/
-├─ middleware/
-├─ models/
-├─ public/
+├─ asssets/
 │  ├─ css/
 │  ├─ icons/
 │  ├─ img/
 │  ├─ js/
+├─ config/              // configuration variables
+├─ controllers/
+│  ├─ api/              // for REST API
+│  ├─ web/              // for rendering views
+├─ loaders/             // autoloading of route files
+├─ helpers/
+├─ middleware/
+├─ models/
 ├─ routes/
 │  ├─ api/              // for REST API
 │  ├─ web/              // for rendering views

@@ -2,5 +2,5 @@ const path = require("path");
 const favicon = require("serve-favicon");
 
 module.exports = favicon(
-  path.join(__dirname, "../public", "icons", "favicon.ico")
+  path.join(__dirname, "../assets", "img", "favicon.ico")
 );
