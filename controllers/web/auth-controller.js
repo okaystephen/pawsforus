@@ -81,6 +81,11 @@ const authController = {
       return res.redirect("/");
     });
   },
+  match: (req, res) => {
+    res.render('match', {
+      layout: false
+    })
+  }
 };
 
 module.exports = authController;

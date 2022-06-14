@@ -6,6 +6,7 @@ const {
   postRegister,
   postLogin,
   home,
+  match,
 } = require("../../controllers/web/auth-controller");
 const {
   registerValidator,
@@ -16,6 +17,7 @@ const authService = require("../../services/auth-service");
 const ensureLoggedOut = require("../../middleware/ensure-logged-out");
 const ensureLoggedIn = require("../../middleware/ensure-logged-in");
 const authRoutes = express.Router();
+
 
 authRoutes
   .route("/register")
@@ -37,6 +39,9 @@ authRoutes
 
 // set index as login page
 authRoutes.route("/").get((req, res) => res.redirect("/login"));
+authRoutes
+  .route("/match")
+  .get(match);
 
 authRoutes.route("/home").get(home);
 
