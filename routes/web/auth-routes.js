@@ -22,7 +22,7 @@ const authRoutes = express.Router();
 authRoutes
   .route("/register")
   .get(ensureLoggedOut, showRegister)
-  .post(ensureLoggedOut, validate(registerValidator, true), postRegister);
+  .post(ensureLoggedOut, registerValidator, postRegister);
 
 authRoutes
   .route("/login")

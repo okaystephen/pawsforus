@@ -1,6 +1,7 @@
 const User = require("../../models/User");
 const bcrypt = require("bcrypt");
 const hashingConfig = require("../../config/hashing");
+const { validationResult, matchedData } = require("express-validator");
 
 const authController = {
   showLogin: (req, res) => {
@@ -40,12 +41,23 @@ const authController = {
     }
 
     if (errors) res.status(400);
-
-    res.render("register", { layout: false, errors });
+    console.log(req.body);
+    res.render("register", { layout: false, errors, inputs: req.body });
   },
   postRegister: async (req, res) => {
+    const errors = validationResult(req);
+    const matched = matchedData(req, { locations: ["body"] });
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render("register", {
+        layout: false,
+        errors: errors.mapped(),
+        inputs: matched,
+      });
+    }
+
     //if no errors
-    const { full_name, email, password } = req.body;
+    const { full_name, email, password } = matched;
     const hashedPassword = await bcrypt.hash(
       password,
       hashingConfig.bcrypt.saltRounds
@@ -82,10 +94,10 @@ const authController = {
     });
   },
   match: (req, res) => {
-    res.render('match', {
-      layout: false
-    })
-  }
+    res.render("match", {
+      layout: false,
+    });
+  },
 };
 
 module.exports = authController;

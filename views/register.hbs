@@ -47,29 +47,32 @@
             <form class="needs-validation {{#if errors}}was-validated{{/if}}" method="POST" novalidate>
                 <div class="form-group">
                     <label for="user_name">Your name</label>
-                    <input type="text" class="form-control" id="user_name" name="full_name" placeholder="Enter name" value="{{errors.full_name.value}}"
-                        required>
+                    <input type="text" class="form-control" id="user_name" name="full_name" placeholder="Enter name"
+                        value="{{inputs.full_name}}" required>
                 </div>
                 <div class="form-group">
                     <label for="user_email">Email address</label>
                     <input type="email" class="form-control" id="user_email" name="email" aria-describedby="emailHelp"
-                        placeholder="Enter email" required>
+                        placeholder="Enter email" value="{{inputs.email}}" required>
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                         else.</small>
                     <p style="color: red; font-size: 13px">
-                        {{details.user_emailError}}
+                        {{errors.email.msg}}
                     </p>
                 </div>
                 <div class="form-group">
                     <label for="user_pass">Password</label>
                     <input type="password" class="form-control" id="user_pass" name="password" placeholder="Password"
                         required>
+                    <p style="color: red; font-size: 13px">
+                        {{errors.password.msg}}
+                    </p>
                 </div>
                 <div class="form-group">
                     <label for="password_confirmation">Confirm Password</label>
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
                         placeholder="Confirm Password" required>
-                        <p style="color: red; font-size: 13px">
+                    <p style="color: red; font-size: 13px">
                         {{errors.password_confirmation.msg}}
                     </p>
                 </div>
@@ -77,6 +80,9 @@
                     <input type="checkbox" class="form-check-input" id="agree_tnc" name="agree_tnc" required>
                     <label class="form-check-label" for="agree_tnc">I agree to the <u>terms and
                             conditions</u></label>
+                    <p style="color: red; font-size: 13px">
+                        {{errors.agree_tnc.msg}}
+                    </p>
                 </div>
                 <button type="submit" class="btn btn-warning w-100 mt-2">Log In</button>
             </form>
