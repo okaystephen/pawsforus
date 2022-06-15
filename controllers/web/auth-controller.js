@@ -125,11 +125,7 @@ const authController = {
       layout: false,
     });
   },
-  profile: (req, res) => {
-    res.render("profile", {
-      layout: false,
-    });
-  },
+  
 };
 
 module.exports = authController;
