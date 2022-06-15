@@ -13,6 +13,10 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/form-validator.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
 
     <!-- TITLE -->
     <title>PawsForUs - Home</title>
@@ -23,7 +27,7 @@
     <div class="container-fluid body-container d-flex flex-column justify-content-start align-items-left py-5">
         <div class="p-4 text-left d-flex justify-content-between">
             <h1 class="header-gradient">Discover</h1>
-            <img src="/img/profile-icon.png" class="nav-icon">
+            <a href="/logout"><img src="/img/profile-icon.png" class="nav-icon"></a>
         </div>
         <div class="px-4 py-2 overflow-auto">
             <a href="/match">
@@ -76,11 +80,15 @@
             </div>
         </div>
     </div>
-    <div class="px-5 footer-background text-center d-flex flex-row justify-content-between align-items-center"
+    <div class="px-5 py-3 footer-background text-center d-flex flex-row justify-content-between align-items-center"
         style="overflow: hidden;position: fixed;bottom: 0;width: 100%;">
-        <a href="/home"><img src="/img/nav-one.png"></a>
+        {{!-- <a href="/home"><img src="/img/nav-one.png"></a>
         <a href="/"><img src="/img/nav-two.png"></a>
         <a href="/chat"><img src="/img/nav-three.png"></a>
-        <img src="/img/nav-four.png">
+        <img src="/img/nav-four.png"> --}}
+        <a href="/home"><i class="nav-icon fas fa-compass fa-3x"></i></a>
+        <a href="/match"><i class="nav-icon fas fa-paw fa-3x"></i></a>
+        <a href="/chat"><i class="nav-icon far fa-comments fa-3x"></i></a>
+        <a href="/profile"><i class="nav-icon far fa-user fa-3x"></i></a>
     </div>
 </body>

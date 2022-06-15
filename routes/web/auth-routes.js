@@ -43,6 +43,7 @@ authRoutes.route("/chatbox").get(chatbox);
 authRoutes
   .route("/whoami")
   .get(ensureLoggedIn, (req, res) => res.send(req.user));
+authRoutes.route("/logout").get(logout);
 authRoutes.route("/logout").post(ensureLoggedIn, logout);
 
 module.exports = { router: authRoutes, prefix: "/" };
