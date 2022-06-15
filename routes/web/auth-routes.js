@@ -5,7 +5,7 @@ const {
   logout,
   postRegister,
   postLogin,
-  home,
+  discover,
   match,
   select,
   chat,
@@ -33,7 +33,7 @@ authRoutes
 // set index as login page
 authRoutes.route("/").get((req, res) => res.redirect("/login"));
 authRoutes.route("/match").get(match);
-authRoutes.route("/home").get(home);
+authRoutes.route("/discover").get(discover);
 authRoutes.route("/select").get(select);
 authRoutes.route("/chat").get(chat);
 authRoutes.route("/chatbox").get(chatbox);

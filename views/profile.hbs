@@ -42,7 +42,8 @@
             <div class="row pt-3">
                 <div class="col">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h4><b>My Pets <i class="header-gradient fa-solid fa-circle-plus fa-1x"></i></b></h4>
+                        <h4><b>My Pets <a href="/add-pet"><i
+                                        class="header-gradient fa-solid fa-circle-plus fa-1x"></i></a></b></h4>
                         <div class="header-gradient" style="font-weight: 400;">View All <i
                                 class="fa-solid fa-arrow-right-long"></i></div>
                     </div>
@@ -52,28 +53,28 @@
                             <img src="/img/dog.png" width="60vw">
                             <div class="ml-2"><b>Princeton</b></div>
                         </div>
-                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;"></i>
+                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
                     </div>
                     <div class="py-2 d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-start align-items-center">
                             <img src="/img/bruno.png" width="60vw">
                             <div class="ml-2"><b>Bruno</b></div>
                         </div>
-                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;"></i>
+                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
                     </div>
                     <div class="py-2 d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-start align-items-center">
                             <img src="/img/fred.png" width="60vw">
                             <div class="ml-2"><b>Fred</b></div>
                         </div>
-                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;"></i>
+                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
                     </div>
                     <div class="py-2 d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-start align-items-center">
                             <img src="/img/lisa.png" width="60vw">
                             <div class="ml-2"><b>Lisa</b></div>
                         </div>
-                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;"></i>
+                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
                     </div>
                 </div>
             </div>
@@ -95,12 +96,12 @@
                     <h4><b>Matches Per Pet</b></h4>
                     <div class="py-2 d-flex justify-content-between align-items-center">
                         <div class="d-flex flex-column align-items-center">
-                            <img src="/img/bruno.png" width="80vw">
+                            <img src="/img/bruno.png" width="90vw">
                             <b>Bruno</b>
                             <div>6</div>
                         </div>
                         <div class="d-flex flex-column align-items-center">
-                            <img src="/img/dog.png" width="90vw">
+                            <img src="/img/dog.png" width="110vw">
                             <b>Princeton</b>
                             <div>10</div>
                         </div>
@@ -123,9 +124,16 @@
     </div>
     <div class="px-5 py-3 footer-background text-center d-flex flex-row justify-content-between align-items-center"
         style="overflow: hidden;position: fixed;bottom: 0;width: 100%;">
-        <a href="/home"><i class="nav-icon far fa-compass fa-3x"></i></a>
-        <a href="/match"><i class="nav-icon fas fa-paw fa-3x"></i></a>
+        <a href="/discover"><i class="nav-icon far fa-compass fa-3x"></i></a>
+        <a href="/match"><img src="img/paw-outline.png" width="55vw"></a>
         <a href="/chat"><i class="nav-icon far fa-comments fa-3x"></i></a>
         <a href="/profile"><i class="nav-icon fas fa-user fa-3x"></i></a>
     </div>
 </body>
+
+<script>
+    function deletePet(e) {
+        alert(`Pet removed.`)
+        $(e).parent().remove()
+    }
+</script>

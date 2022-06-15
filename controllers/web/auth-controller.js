@@ -43,10 +43,9 @@ const authController = {
           return next(err);
         }
 
-        return res.redirect("/select");
+        return res.redirect("/discover");
       });
     })(req, res, next);
-    
   },
   showRegister: (req, res) => {
     res.render("register", { layout: false });
@@ -87,8 +86,8 @@ const authController = {
       return res.status(500).send(error);
     }
   },
-  home: (req, res) => {
-    res.render("home", {
+  discover: (req, res) => {
+    res.render("discover", {
       layout: false,
     });
   },
@@ -125,7 +124,6 @@ const authController = {
       layout: false,
     });
   },
-  
 };
 
 module.exports = authController;
