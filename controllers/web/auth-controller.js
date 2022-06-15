@@ -43,7 +43,7 @@ const authController = {
           return next(err);
         }
 
-        return res.redirect("/home");
+        return res.redirect("/discover");
       });
     })(req, res, next);
     // }
@@ -100,8 +100,8 @@ const authController = {
       return res.status(500).send(error);
     }
   },
-  home: (req, res) => {
-    res.render("home", {
+  discover: (req, res) => {
+    res.render("discover", {
       layout: false,
     });
   },

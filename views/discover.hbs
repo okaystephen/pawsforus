@@ -19,12 +19,65 @@
     <script src="https://kit.fontawesome.com/a2bb66671d.js" crossorigin="anonymous"></script>
 
     <!-- TITLE -->
-    <title>PawsForUs - Home</title>
+    <title>PawsForUs - Discover</title>
 
 </head>
 
 <body>
-    <div class="container-fluid body-container d-flex flex-column justify-content-start align-items-left py-5">
+    <div class="container-fluid p-4 body-container d-flex flex-column justify-content-start align-items-left">
+        <div class="text-left d-flex justify-content-between align-items-center">
+            <h1 class="header-gradient pt-2">Discover</h1>
+            <a href="/logout"><img src="/img/profile-icon.png" class="nav-icon"></a>
+        </div>
+        <div class="pt-2 pb-4 mt-2 mb-5 overflow-auto">
+            <div class="row pb-3">
+                <div class="col">
+                    <a href="/match">
+                        <div class="d-flex align-items-end"
+                            style="border-radius:5%; height: 82vw; background-image: url(/img/lovely.png); background-size: cover;">
+                            <h2 class="header-weight nav-icon pl-3 pb-2">Lovely</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row pb-3">
+                <div class="col">
+                    <div class="d-flex align-items-end"
+                        style="border-radius:5%; height: 40vw; background-image: url(/img/discover/1.png); background-size: cover;">
+                        <h3 class="header-weight nav-icon pl-3 pb-2">Pumpkin</h3>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-flex align-items-end"
+                        style="border-radius:5%; height: 40vw; background-image: url(/img/discover/2.png); background-size: cover;">
+                        <h3 class="header-weight nav-icon pl-3 pb-2">Clifford</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row pb-3">
+                <div class="col">
+                    <div class="d-flex align-items-end"
+                        style="border-radius:5%; height: 40vw; background-image: url(/img/discover/3.png); background-size: cover;">
+                        <h3 class="header-weight nav-icon pl-3 pb-2">Munchkin</h3>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-flex align-items-end"
+                        style="border-radius:5%; height: 40vw; background-image: url(/img/discover/4.png); background-size: cover;">
+                        <h3 class="header-weight nav-icon pl-3 pb-2">Bennett</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="px-5 py-3 footer-background text-center d-flex flex-row justify-content-between align-items-center"
+        style="overflow: hidden;position: fixed;bottom: 0;width: 100%;">
+        <a href="/discover"><i class="nav-icon fas fa-compass fa-3x"></i></a>
+        <a href="/match"><i class="nav-icon fas fa-paw fa-3x"></i></a>
+        <a href="/chat"><i class="nav-icon far fa-comments fa-3x"></i></a>
+        <a href="/profile"><i class="nav-icon far fa-user fa-3x"></i></a>
+    </div>
+    {{!-- <div class="container-fluid body-container d-flex flex-column justify-content-start align-items-left py-5">
         <div class="p-4 text-left d-flex justify-content-between">
             <h1 class="header-gradient">Discover</h1>
             <a href="/logout"><img src="/img/profile-icon.png" class="nav-icon"></a>
@@ -82,13 +135,9 @@
     </div>
     <div class="px-5 py-3 footer-background text-center d-flex flex-row justify-content-between align-items-center"
         style="overflow: hidden;position: fixed;bottom: 0;width: 100%;">
-        {{!-- <a href="/home"><img src="/img/nav-one.png"></a>
-        <a href="/"><img src="/img/nav-two.png"></a>
-        <a href="/chat"><img src="/img/nav-three.png"></a>
-        <img src="/img/nav-four.png"> --}}
-        <a href="/home"><i class="nav-icon fas fa-compass fa-3x"></i></a>
+        <a href="/discover"><i class="nav-icon fas fa-compass fa-3x"></i></a>
         <a href="/match"><i class="nav-icon fas fa-paw fa-3x"></i></a>
         <a href="/chat"><i class="nav-icon far fa-comments fa-3x"></i></a>
         <a href="/profile"><i class="nav-icon far fa-user fa-3x"></i></a>
-    </div>
+    </div> --}}
 </body>
