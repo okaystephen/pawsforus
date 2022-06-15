@@ -46,20 +46,6 @@ const authController = {
         return res.redirect("/discover");
       });
     })(req, res, next);
-    // }
-    // Passport error
-    // else if (req.session.messages instanceof Array) {
-
-    //   req.session.messages = null;
-    //   return res.status(400).render("main", {
-    //     layout: false,
-    //     errors: passportErrors,
-    //     inputs: matched,
-    //   });
-    // }
-
-    //if no errors
-    // res.redirect("/home");
   },
   showRegister: (req, res) => {
     res.render("register", { layout: false });
@@ -135,11 +121,6 @@ const authController = {
   },
   chatbox: (req, res) => {
     res.render("chatbox", {
-      layout: false,
-    });
-  },
-  profile: (req, res) => {
-    res.render("profile", {
       layout: false,
     });
   },

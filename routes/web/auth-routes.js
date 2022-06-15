@@ -8,10 +8,8 @@ const {
   discover,
   match,
   select,
-  addpet,
   chat,
   chatbox,
-  profile,
 } = require("../../controllers/web/auth-controller");
 const {
   registerValidator,
@@ -32,8 +30,6 @@ authRoutes
   .post(ensureLoggedOut, loginValidator, postLogin);
 
 
-authRoutes.route("/add-pet").get(addpet);
-
 // set index as login page
 authRoutes.route("/").get((req, res) => res.redirect("/login"));
 authRoutes.route("/match").get(match);
@@ -41,7 +37,6 @@ authRoutes.route("/discover").get(discover);
 authRoutes.route("/select").get(select);
 authRoutes.route("/chat").get(chat);
 authRoutes.route("/chatbox").get(chatbox);
-authRoutes.route("/profile").get(profile);
 authRoutes
   .route("/whoami")
   .get(ensureLoggedIn, (req, res) => res.send(req.user));
