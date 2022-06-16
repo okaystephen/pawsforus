@@ -55,7 +55,9 @@ mongoose.connect(
     useUnifiedTopology: true,
     useNewUrlParser: true,
   },
-  () => {
+  (err) => {
+    if (err) return err;
+
     console.log(`Connected to database at ${database.mongodb.url}`);
   }
 );
