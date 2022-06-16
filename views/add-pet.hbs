@@ -27,38 +27,72 @@
             <h1 class="header-gradient pt-2">Add Pet Profile</h1>
         </div>
         <div class="px-4 pt-2 pb-5 mb-5 overflow-auto">
-            <form class="needs-validation" method="POST" novalidate>
+            {{!-- <form class="needs-validation" method="POST" action="/add-pet" enctype="multipart/form-data" novalidate> --}}
+            <form class="needs-validation" method="POST" action="/add-pet" novalidate>
                 <div class="form-group">
                     <label for="pet_name">Name</label>
-                    <input type="text" class="form-control" id="pet_name" placeholder="Enter name" required>
+                    <input type="text" class="form-control" id="pet_name" name="pet_name" placeholder="Enter name" value="{{inputs.pet_name}}"required>
                 </div>
                 <div class="form-group">
                     <label for="pet_about">About Me</label>
-                    <textarea class="form-control" id="pet_about" rows="3" required></textarea>
+                    <textarea class="form-control" id="pet_about" name="pet_about" rows="3" required>{{inputs.pet_about}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="pet_birth">Birthdate</label>
-                    <input type="date" class="form-control" id="pet_birth" required>
+                    <input type="date" class="form-control" id="pet_birth" name="pet_birth" value="{{dateFormat inputs.pet_birth "YYYY-MM-DD"}}" required>
+                     <p style="color: red; font-size: 13px">
+                        {{errors.pet_birth.msg}}
+                    </p>
                 </div>
                 <div class="form-group">
+                    <label for="pet_type">Pet Type</label>
+                     <select class="form-control" id="pet_type" name="pet_type" onchange="showTypeOthers(this)"  required>
+                        <option value="" selected>Select pet type...</option>
+                        <option value="Dog" {{select "Dog" inputs.pet_type}}>Dog</option>
+                        <option value="Cat" {{select "Cat" inputs.pet_type}}>Cat</option>
+                        <option value="Others" {{select "Others" inputs.pet_type}}>Others</option>
+                    </select>
+                </div>
+                <div id="show_type_others" class="form-group" style="margin-bottom: 20px; display: none">
+                    <label for="pet_type_others">Please specify other pet type</label>
+                    <input type="text" class="form-control" id="pet_type_others"
+                                name="pet_type_others" placeholder="Specify pet type"
+                                value="{{inputs.pet_type_others}}">
+                    <p style="color: red; font-size: 13px">
+                        {{errors.pet_type_others.msg}}
+                    </p>
+                </div>
+                <div class="form-group" id="breed">
                     <label for="pet_breed">Breed</label>
-                    <input type="text" class="form-control" id="pet_breed" placeholder="Enter breed" required>
+                     <select class="form-control" id="pet_breed" name="pet_breed">
+                        <option value="" selected>Select breed...</option>
+                    </select>
+                    <p style="color: red; font-size: 13px">
+                        {{errors.pet_breed.msg}}
+                    </p>
+                </div>
+                <div class="form-group" id="breed_others">
+                    <label for="pet_breed_others">Breed</label>
+                    <input type="text" class="form-control" id="pet_breed_others" name="pet_breed_others" placeholder="Enter breed" value="{{inputs.pet_breed_others}}">
+                    <p style="color: red; font-size: 13px">
+                        {{errors.pet_breed_others.msg}}
+                    </p>
                 </div>
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col">
                             <label for="pet_gender">Gender</label>
-                            <select class="form-control" id="pet_gender" required>
+                            <select class="form-control" id="pet_gender" name="pet_gender" required>
                                 <option value="" selected>Select gender...</option>
-                                <option value="male">M</option>
-                                <option value="female">F</option>
+                                <option value="Male" {{select "Male" inputs.pet_gender}}>Male</option>
+                                <option value="Female" {{select "Female" inputs.gender}}>Female</option>
                             </select>
                         </div>
                         <div class="col">
                             <label for="pet_weight">Weight</label>
                             <div class="input-group">
-                                <input type="number" class="form-control" id="pet_weight" min="0" step=".5"
-                                    placeholder="Enter weight" required>
+                                <input type="number" class="form-control" id="pet_weight" name="pet_weight" min="0" step=".5"
+                                    placeholder="Enter weight" value="{{inputs.pet_weight}}"required>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">kg</div>
                                 </div>
@@ -68,17 +102,21 @@
                 </div>
                 <div class="form-group">
                     <label for="pet_status">Status</label>
-                    <select class="form-control" id="pet_status" required>
+                    <select class="form-control" id="pet_status" name="pet_status" required>
                         <option value="" selected>Select status...</option>
-                        <option value="match">For matching</option>
-                        <option value="adopt">For adoption</option>
-                        <option value="sale">For sale</option>
+                        <option value="For matching" {{select "For matching" inputs.pet_status}}>For matching</option>
+                        <option value="For adoption" {{select "For adoption" inputs.pet_status}}>For adoption</option>
+                        <option value="For sale" {{select "For sale" inputs.pet_status}}>For sale</option>
                     </select>
                 </div>
-                <div class="form-group">
+                {{!-- <div class="form-group">
                     <label for="pet_images">Images</label>
-                    <input type="file" class="form-control-file" id="pet_images" required>
-                </div>
+                    <small style="font-style:italic">(Only accepts jpeg and png format)</small>
+                    <input type="file" class="form-control-file" id="pet_images" name="pet_images" accept="image/jpeg, image/png" multiple>
+                     <p style="color: red; font-size: 13px">
+                        {{errors.pet_images.msg}}
+                    </p>
+                </div> --}}
                 <button type="submit" class="btn btn-warning w-100 mt-2">Submit</button>
             </form>
         </div>
@@ -91,3 +129,94 @@
         <a href="/profile"><i class="nav-icon fas fa-user fa-3x"></i></a>
     </div>
 </body>
+
+<script>
+    $(document).ready(function () {
+        if($('#pet_type').val() == 'Others'){
+            document.getElementById('show_type_others').style.display = 'block';
+            document.getElementById('breed_others').style.display = 'block';
+            document.getElementById('breed').style.display = 'none';
+        } else{
+            document.getElementById('show_type_others').style.display = 'none';
+            document.getElementById('breed_others').style.display = 'none';
+            document.getElementById('breed').style.display = 'block';
+        }
+
+
+    })
+
+    function showTypeOthers(type){
+        if(type.value == 'Others'){
+            document.getElementById('show_type_others').style.display = 'block';
+            document.getElementById('breed_others').style.display = 'block';
+            document.getElementById('breed').style.display = 'none';
+        } else{
+            document.getElementById('show_type_others').style.display = 'none';
+            document.getElementById('breed_others').style.display = 'none';
+            document.getElementById('breed').style.display = 'block';
+        }
+    }
+
+    const dog_breeds = ["Husky", "Corgi", "Aspin"]
+    const cat_breeds = ["Munchkin", "British Shorthair", "Persian", "Aspin"]
+
+    $("#pet_type").change(function(){
+        var type = $('#pet_type').val()
+        if(type == ""){
+            $('#pet_breed').prop("disabled", true);
+        } else if(type != "Others"){
+            var input_breed = `{{inputs.pet_breed}}`
+            $('#pet_breed').prop("disabled", false);
+            $('#pet_breed').empty();
+            $('#pet_breed').append('<option value="" disabled selected>Select breed...</option>')
+
+                if(type == "Dog"){
+                    dog_breeds.forEach(function(dog){
+                        if(input_breed === dog){
+                            $('#pet_breed').append(`<option value="` + dog + `" selected>` + dog + `</option>`)
+                        } else {
+                            $('#pet_breed').append(`<option value="` + dog + `">` + dog + `</option>`)
+                        }
+                    });
+                } else if (type == "Cat"){
+                    cat_breeds.forEach(function(cat){
+                        if(input_breed === cat){
+                            $('#pet_breed').append(`<option value="` + cat + `" selected>` + cat + `</option>`)
+                        } else {
+                            $('#pet_breed').append(`<option value="` + cat + `">` + cat + `</option>`)
+                        }
+                    });
+                }
+        }
+    })
+
+    // populate breed
+    var type = $('#pet_type').val()
+    if(type == ""){
+        $('#pet_breed').prop("disabled", true);
+    } else if(type != "Others"){
+        var input_breed = `{{inputs.pet_breed}}`
+        $('#pet_breed').prop("disabled", false);
+        $('#pet_breed').empty();
+        $('#pet_breed').append('<option value="" selected>Select breed...</option>')
+
+            if(type == "Dog"){
+                dog_breeds.forEach(function(dog){
+                     if(input_breed === dog){
+                        $('#pet_breed').append(`<option value="` + dog + `" selected>` + dog + `</option>`)
+                    } else {
+                        $('#pet_breed').append(`<option value="` + dog + `">` + dog + `</option>`)
+                    }
+                });
+            } else if (type == "Cat"){
+                cat_breeds.forEach(function(cat){
+                    if(input_breed === cat){
+                        $('#pet_breed').append(`<option value="` + cat + `" selected>` + cat + `</option>`)
+                    } else {
+                        $('#pet_breed').append(`<option value="` + cat + `">` + cat + `</option>`)
+                    }
+                });
+            }
+    }
+
+</script>

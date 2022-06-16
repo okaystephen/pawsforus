@@ -11,7 +11,7 @@ const authController = {
   postLogin: (req, res, next) => {
     const errors = validationResult(req);
     const matched = matchedData(req, { locations: ["body"] });
-
+    
     // validation error
     if (!errors.isEmpty()) {
       return res.status(400).render("main", {
@@ -106,11 +106,6 @@ const authController = {
   },
   select: (req, res) => {
     res.render("select", {
-      layout: false,
-    });
-  },
-  addpet: (req, res) => {
-    res.render("add-pet", {
       layout: false,
     });
   },
