@@ -26,7 +26,7 @@ const authController = {
       if (!user) {
         const passportErrors = {
           email: {
-            msg: info,
+            msg: info.message,
             value: "",
             param: "email",
             location: "body",
