@@ -27,8 +27,7 @@
             <h1 class="header-gradient pt-2">Add Pet Profile</h1>
         </div>
         <div class="px-4 pt-2 pb-5 mb-5 overflow-auto">
-            {{!-- <form class="needs-validation" method="POST" action="/add-pet" enctype="multipart/form-data" novalidate> --}}
-            <form class="needs-validation" method="POST" action="/add-pet" novalidate>
+            <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
                     <label for="pet_name">Name</label>
                     <input type="text" class="form-control" id="pet_name" name="pet_name" placeholder="Enter name" value="{{inputs.pet_name}}"required>
@@ -109,14 +108,14 @@
                         <option value="For sale" {{select "For sale" inputs.pet_status}}>For sale</option>
                     </select>
                 </div>
-                {{!-- <div class="form-group">
-                    <label for="pet_images">Images</label>
+                <div class="form-group">
+                    <label for="photos">Images</label>
                     <small style="font-style:italic">(Only accepts jpeg and png format)</small>
-                    <input type="file" class="form-control-file" id="pet_images" name="pet_images" accept="image/jpeg, image/png" multiple>
+                    <input type="file" class="form-control-file" id="photos" name="photos" accept="image/jpeg, image/png" multiple>
                      <p style="color: red; font-size: 13px">
-                        {{errors.pet_images.msg}}
+                        {{errors.photos.msg}}
                     </p>
-                </div> --}}
+                </div>
                 <button type="submit" class="btn btn-warning w-100 mt-2">Submit</button>
             </form>
         </div>
