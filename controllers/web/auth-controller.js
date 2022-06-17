@@ -86,11 +86,7 @@ const authController = {
       return res.status(500).send(error);
     }
   },
-  discover: (req, res) => {
-    res.render("discover", {
-      layout: false,
-    });
-  },
+  
   logout: (req, res) => {
     req.logout((err) => {
       if (err) {
