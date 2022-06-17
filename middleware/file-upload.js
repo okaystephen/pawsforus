@@ -1,6 +1,8 @@
 const multer = require("multer");
+const FirebaseStorage = require("multer-firebase-storage");
+const filesystemsConfig = require("../config/filesystems");
 
-const publicStorage = multer.diskStorage({
+const localPublicStorage = multer.diskStorage({
   destination: `storage/app/public/`,
   filename: function (req, file, cb) {
     const filename = `${Date.now()}.${file.mimetype.split("/")[1]}`;
@@ -9,8 +11,17 @@ const publicStorage = multer.diskStorage({
   },
 });
 
+const cloudPublicStorage = FirebaseStorage({
+  bucketName: filesystemsConfig.firebase.bucketName,
+  credentials: {
+    projectId: filesystemsConfig.firebase.projectId,
+    privateKey: filesystemsConfig.firebase.privateKey,
+    clientEmail: filesystemsConfig.firebase.clientEmail,
+  },
+});
+
 const fileUpload = multer({
-  storage: publicStorage,
+  storage: localPublicStorage,
 });
 
 module.exports = fileUpload;
