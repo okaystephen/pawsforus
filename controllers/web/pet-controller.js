@@ -39,7 +39,7 @@ const petController = {
     } = matched;
 
     try {
-      const pet = await Pet.create({
+      const pet = new Pet({
         owner_id: req.user._id,
         name: pet_name,
         description: pet_about,
@@ -51,25 +51,24 @@ const petController = {
         gender: pet_gender,
         status: pet_status,
         weight_kg: pet_weight,
+        uploads: [],
       });
 
-      // create upload model, then create petupload model
-      const uploads = req.files.photos.map(
-        (photo) =>
-          new Upload({
-            original_name: photo.originalname,
-            filename: photo.filename,
-            public_url: photo.publicUrl,
-          })
-      );
-      const petUploads = uploads.map(
-        (upload) => new PetUpload({ pet_id: pet._id, upload_id: upload._id })
-      );
+      // create uploads model
+      const uploads = req.files.photos.map((photo) => {
+        const u = new Upload({
+          original_name: photo.originalname,
+          filename: photo.filename,
+          public_url: photo.publicUrl,
+        });
+        pet.uploads.push(u._id);
+        return u;
+      });
 
-      const result1 = await Upload.bulkSave(uploads);
-      const result2 = await PetUpload.bulkSave(petUploads);
+      await pet.save();
+      const uploadsResult = await Upload.bulkSave(uploads);
 
-      console.log("pet profile added", result1, result2);
+      console.log("pet profile added", uploadsResult);
       return res.redirect("/discover");
     } catch (error) {
       console.log(error);
