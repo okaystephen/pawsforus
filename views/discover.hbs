@@ -34,39 +34,21 @@
                 <div class="col">
                     <a href="/match">
                         <div class="d-flex align-items-end"
-                            style="border-radius:5%; height: 82vw; background-image: url(/img/lovely.png); background-size: cover;">
-                            <h2 class="header-weight nav-icon pl-3 pb-2">Lovely</h2>
+                            style="border-radius:5%; height: 82vw; background-image: url({{data.first.uploads.[0].public_url}}); background-size: cover;">
+                            <h2 class="header-weight nav-icon pl-3 pb-2">{{data.first.name}}</h2>
                         </div>
                     </a>
                 </div>
             </div>
             <div class="row pb-3">
-                <div class="col">
+                {{#each data.rest}}
+                <div class="col-6 pb-3">
                     <div class="d-flex align-items-end"
-                        style="border-radius:5%; height: 40vw; background-image: url(/img/discover/1.png); background-size: cover;">
-                        <h3 class="header-weight nav-icon pl-3 pb-2">Pumpkin</h3>
+                        style="border-radius:5%; height: 40vw; background-image: url({{this.uploads.[0].public_url}}); background-size: cover;">
+                        <h3 class="header-weight nav-icon pl-3 pb-2">{{this.name}}</h3>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="d-flex align-items-end"
-                        style="border-radius:5%; height: 40vw; background-image: url(/img/discover/2.png); background-size: cover;">
-                        <h3 class="header-weight nav-icon pl-3 pb-2">Clifford</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row pb-3">
-                <div class="col">
-                    <div class="d-flex align-items-end"
-                        style="border-radius:5%; height: 40vw; background-image: url(/img/discover/3.png); background-size: cover;">
-                        <h3 class="header-weight nav-icon pl-3 pb-2">Munchkin</h3>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="d-flex align-items-end"
-                        style="border-radius:5%; height: 40vw; background-image: url(/img/discover/4.png); background-size: cover;">
-                        <h3 class="header-weight nav-icon pl-3 pb-2">Bennett</h3>
-                    </div>
-                </div>
+                {{/each}}
             </div>
         </div>
     </div>

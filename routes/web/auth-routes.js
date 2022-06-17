@@ -5,7 +5,6 @@ const {
   logout,
   postRegister,
   postLogin,
-  discover,
   match,
   select,
   chat,

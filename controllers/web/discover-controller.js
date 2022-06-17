@@ -1,8 +1,17 @@
+const Pet = require("../../models/Pet");
+
 const discoverController = {
-  index: (req, res) => {
-    res.render("discover", {
-      layout: false,
-    });
+  index: async (req, res) => {
+    try {
+      const pets = await Pet.find().populate("uploads").lean().exec();
+
+      return res.render("discover", {
+        layout: false,
+        data: { first: pets.shift(), rest: pets },
+      });
+    } catch (error) {
+      return res.status(500).send(error);
+    }
   },
 };
 
