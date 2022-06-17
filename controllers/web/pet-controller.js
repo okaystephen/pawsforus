@@ -1,7 +1,5 @@
 const Pet = require("../../models/Pet");
 const { validationResult, matchedData } = require("express-validator");
-var multer = require("multer");
-var uploadMiddleware = require("../../middleware/upload-images");
 const Upload = require("../../models/Upload");
 const PetUpload = require("../../models/PetUpload");
 
@@ -54,21 +52,22 @@ const petController = {
         status: pet_status,
         weight_kg: pet_weight,
       });
-      console.log(req.files.photos);
+
       // create upload model, then create petupload model
       const uploads = req.files.photos.map(
         (photo) =>
           new Upload({
             original_name: photo.originalname,
             filename: photo.filename,
+            public_url: photo.publicUrl,
           })
       );
       const petUploads = uploads.map(
         (upload) => new PetUpload({ pet_id: pet._id, upload_id: upload._id })
       );
 
-      const result1 = await Upload.bulkSave(uploads)
-      const result2 = await PetUpload.bulkSave(petUploads)
+      const result1 = await Upload.bulkSave(uploads);
+      const result2 = await PetUpload.bulkSave(petUploads);
 
       console.log("pet profile added", result1, result2);
       return res.redirect("/discover");

@@ -4,7 +4,8 @@ const mongooseDelete = require("mongoose-delete");
 const uploadSchema = new mongoose.Schema(
   {
     original_name: { type: String, required: true },
-    filename: { type: String, required: true },
+    filename: { type: String, required: true, unique: true },
+    public_url: { type: String, required: true, unique: true },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

@@ -18,7 +18,7 @@ const app = express();
 // favicon and static files
 app.use(favicon);
 app.use(express.static(path.resolve(__dirname, "assets")));
-
+app.use('/storage', express.static(path.resolve(__dirname, 'storage/app/public')))
 // Logging
 app.use(logger);
 
