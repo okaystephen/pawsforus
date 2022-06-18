@@ -48,34 +48,17 @@
                                 class="fa-solid fa-arrow-right-long"></i></div>
                     </div>
 
+                    {{#each data.pets}}
                     <div class="py-2 d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-start align-items-center">
-                            <img src="/img/dog.png" width="60vw">
-                            <div class="ml-2"><b>Princeton</b></div>
+                            <img src="{{this.uploads.[0].public_url}}" class="rounded-circle"
+                                alt="Photo of {{this.name}}" width="50vw" height="50vw">
+                            <div class="ml-2"><b>{{this.name}}</b></div>
                         </div>
                         <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
                     </div>
-                    <div class="py-2 d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <img src="/img/bruno.png" width="60vw">
-                            <div class="ml-2"><b>Bruno</b></div>
-                        </div>
-                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
-                    </div>
-                    <div class="py-2 d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <img src="/img/fred.png" width="60vw">
-                            <div class="ml-2"><b>Fred</b></div>
-                        </div>
-                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
-                    </div>
-                    <div class="py-2 d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <img src="/img/lisa.png" width="60vw">
-                            <div class="ml-2"><b>Lisa</b></div>
-                        </div>
-                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
-                    </div>
+                    {{/each}}
+
                 </div>
             </div>
 
