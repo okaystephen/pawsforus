@@ -12,6 +12,8 @@ const petService = {
       const pets = await Pet.find()
         .where("owner_id")
         .ne(user._id)
+        .where('status')
+        .equals(Pet.getStatuses().FOR_MATCHING)
         .populate("uploads")
         .lean()
         .exec();
