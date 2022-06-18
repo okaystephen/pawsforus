@@ -1,9 +1,9 @@
-const Pet = require("../../models/Pet");
+const { getPetsForMatching } = require("../../services/pet-service");
 
 const discoverController = {
   index: async (req, res) => {
     try {
-      const pets = await Pet.find().populate("uploads").lean().exec();
+      const pets = await getPetsForMatching(req.user);
 
       return res.render("discover", {
         layout: false,
