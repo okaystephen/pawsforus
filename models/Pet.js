@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const mongooseDelete = require("mongoose-delete");
 
+const STATUSES = {
+  FOR_MATCHING: "For matching",
+  FOR_ADOPTION: "For adoption",
+  FOR_SALE: "For sale",
+};
+
 const petSchema = new mongoose.Schema(
   {
     owner_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
@@ -14,7 +20,7 @@ const petSchema = new mongoose.Schema(
     gender: { type: String, enum: ["Male", "Female"], required: true },
     status: {
       type: String,
-      enum: ["For matching", "For adoption", "For sale"],
+      enum: [STATUSES.FOR_MATCHING, STATUSES.FOR_ADOPTION, STATUSES.FOR_SALE],
       required: true,
     },
     weight_kg: { type: String, required: true },
@@ -26,6 +32,11 @@ const petSchema = new mongoose.Schema(
 );
 
 petSchema.plugin(mongooseDelete, { deletedAt: true });
+
+petSchema.statics.getStatuses = function () {
+  return STATUSES;
+};
+
 const Pet = mongoose.model("Pet", petSchema);
 
 module.exports = Pet;
