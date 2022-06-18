@@ -57,6 +57,8 @@
                         </div>
                         <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
                     </div>
+                    {{else}}
+                    <p>You don't have any pets. <a class="header-gradient font-weight-normal" href="/add-pet">Create one now!</a></p>
                     {{/each}}
 
                 </div>
