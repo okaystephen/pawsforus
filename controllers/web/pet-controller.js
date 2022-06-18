@@ -1,7 +1,6 @@
 const Pet = require("../../models/Pet");
 const { validationResult, matchedData } = require("express-validator");
 const Upload = require("../../models/Upload");
-const PetUpload = require("../../models/PetUpload");
 
 const petController = {
   showAddPet: (req, res) => {
