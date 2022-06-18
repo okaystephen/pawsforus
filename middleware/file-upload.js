@@ -17,20 +17,25 @@ const localPublicStorage = multer.diskStorage({
   },
 });
 
-// const cloudPublicStorage = FirebaseStorage({
-//   bucketName: filesystemsConfig.firebase.bucketName,
-//   credentials: {
-//     projectId: filesystemsConfig.firebase.projectId,
-//     privateKey: filesystemsConfig.firebase.privateKey,
-//     clientEmail: filesystemsConfig.firebase.clientEmail,
-//   },
-//   directoryPath: "public",
-//   public: true,
-//   unique: true,
-// });
+const cloudPublicStorage = FirebaseStorage({
+  bucketName: filesystemsConfig.firebase.bucketName,
+  credentials: {
+    projectId: filesystemsConfig.firebase.projectId,
+    privateKey: filesystemsConfig.firebase.privateKey,
+    clientEmail: filesystemsConfig.firebase.clientEmail,
+  },
+  directoryPath: "public",
+  public: true,
+  unique: true,
+  hooks: {
+    afterUpload: (req, file, fileRef, bucketRef) => {
+      file.filename = fileRef.id;
+    }
+  }
+});
 
 const fileUpload = multer({
-  storage: localPublicStorage,
+  storage: cloudPublicStorage,
   preservePath: true,
 });
 
