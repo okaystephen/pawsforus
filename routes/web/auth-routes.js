@@ -5,7 +5,6 @@ const {
   logout,
   postRegister,
   postLogin,
-  match,
   select,
   chat,
   chatbox,
@@ -28,10 +27,8 @@ authRoutes
   .get(ensureLoggedOut, showLogin)
   .post(ensureLoggedOut, loginValidator, postLogin);
 
-
 // set index as login page
 authRoutes.route("/").get((req, res) => res.redirect("/login"));
-authRoutes.route("/match").get(match);
 authRoutes.route("/select").get(select);
 authRoutes.route("/chat").get(chat);
 authRoutes.route("/chatbox").get(chatbox);

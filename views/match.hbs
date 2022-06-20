@@ -31,28 +31,29 @@
             <div class="row pb-3">
                 <div class="col">
                     <div
-                        style="height: 82vw; background-image: url(/img/lovely.png); background-size: cover; position: relative;">
+                        style="height: 82vw; background-image: url({{data.uploads.[0].public_url}}); background-size: cover; position: relative;">
                         <h2 class="header-weight nav-icon pl-3"
                             style="color: white; position: absolute; bottom: 0; left: 0; text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
-                            Lovely</h2>
+                            {{data.name}}</h2>
                     </div>
                 </div>
             </div>
             <div style="overflow: auto; max-height: 16em;">
                 <p>
-                    <i class="fa-solid fa-paw"></i> <b>Bulldog</b>, 3 years old <br />
-                    <i class="fa-solid fa-mars"></i> <b>Male</b> <br />
+                    <i class="fa-solid fa-paw"></i> <b>{{data.breed}}</b>, 3 years old <br />
+                    <i class="fa-solid fa-mars"></i> <b>{{data.gender}}</b> <br />
                     <i class="fa-solid fa-compass"></i> <b>less than a mile</b> away <br />
                 </p>
                 <hr />
 
                 <h4>About Me</h4>
                 <p>
-                    Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat, accumsan id imperdiet et,
+                    {{data.description}}
+                    {{!-- Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat, accumsan id imperdiet et,
                     porttitor at sem. Sed porttitor lectus nibh.
                     <br /> <br />
                     Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget
-                    malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+                    malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. --}}
                 </p>
             </div>
 

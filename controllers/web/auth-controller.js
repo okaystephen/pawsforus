@@ -11,7 +11,7 @@ const authController = {
   postLogin: (req, res, next) => {
     const errors = validationResult(req);
     const matched = matchedData(req, { locations: ["body"] });
-    
+
     // validation error
     if (!errors.isEmpty()) {
       return res.status(400).render("main", {
@@ -86,18 +86,13 @@ const authController = {
       return res.status(500).send(error);
     }
   },
-  
+
   logout: (req, res) => {
     req.logout((err) => {
       if (err) {
         return res.status(500).send(err);
       }
       return res.redirect("/");
-    });
-  },
-  match: (req, res) => {
-    res.render("match", {
-      layout: false,
     });
   },
   select: (req, res) => {

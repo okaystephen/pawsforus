@@ -32,7 +32,7 @@
         <div class="pt-2 pb-4 mt-2 mb-5 overflow-auto">
             <div class="row pb-3">
                 <div class="col">
-                    <a href="/match">
+                    <a href="/match/{{data.first._id}}">
                         <div class="d-flex align-items-end"
                             style="border-radius:5%; height: 82vw; background-image: url({{data.first.uploads.[0].public_url}}); background-size: cover;">
                             <h2 class="header-weight nav-icon pl-3 pb-2">{{data.first.name}}</h2>
@@ -43,10 +43,12 @@
             <div class="row pb-3">
                 {{#each data.rest}}
                 <div class="col-6 pb-3">
-                    <div class="d-flex align-items-end"
-                        style="border-radius:5%; height: 40vw; background-image: url({{this.uploads.[0].public_url}}); background-size: cover;">
-                        <h3 class="header-weight nav-icon pl-3 pb-2">{{this.name}}</h3>
-                    </div>
+                    <a href="/match/{{this._id}}">
+                        <div class="d-flex align-items-end"
+                            style="border-radius:5%; height: 40vw; background-image: url({{this.uploads.[0].public_url}}); background-size: cover;">
+                            <h3 class="header-weight nav-icon pl-3 pb-2">{{this.name}}</h3>
+                        </div>
+                    </a>
                 </div>
                 {{/each}}
             </div>
