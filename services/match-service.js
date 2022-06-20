@@ -2,17 +2,12 @@ const Match = require("../models/Match");
 
 const matchService = {
   createMatch: async ({ pet_id, liked_pet_id }) => {
-    // Find one or create your side in the matches table
-    let yourMatchSide = await Match.findOneAndUpdate(
-      { pet_id },
-      { liked_pet_id },
-      { new: true, upsert: true, rawResult: true }
-    ).exec();
+    // Create your side in the matches table
+    let yourMatchSide = await Match.create({ pet_id, liked_pet_id });
 
     const returnObj = {
-      match: yourMatchSide.value,
+      match: yourMatchSide,
       matchFound: false,
-      isNew: !yourMatchSide.lastErrorObject.updatedExisting,
     };
 
     // Afterwards, check if another record exists where pet_id = liked_pet_id AND liked_pet_id = pet_id
