@@ -21,7 +21,7 @@ const matchController = {
         .populate("uploads")
         .lean()
         .exec();
-      return res.render("match", { layout: false, data: pet });
+      return res.render("match", { layout: false, data: pet, user: req.user });
     } catch (error) {
       return res.status(500).send(error);
     }

@@ -49,17 +49,16 @@
                 <h4>About Me</h4>
                 <p>
                     {{data.description}}
-                    {{!-- Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat, accumsan id imperdiet et,
-                    porttitor at sem. Sed porttitor lectus nibh.
-                    <br /> <br />
-                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget
-                    malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. --}}
                 </p>
             </div>
 
             <div class="text-center py-2" style="height: 80px; border-top: 1px solid rgb(219, 219, 219);">
                 <img src="/img/reject.png" class="mx-1" style="max-height:70%;">
-                <img src="/img/logo.png" class="mx-1" style="max-height:120%;">
+                <form method="post" id="form_match">
+                    <button type="submit">
+                        <img src="/img/logo.png" class="mx-1" style="max-height:120%;">
+                    </button>
+                </form>
                 <img src="/img/dog.png" class="mx-1" style="max-height:70%;">
             </div>
         </div>
@@ -72,3 +71,27 @@
         <a href="/profile"><i class="nav-icon far fa-user fa-3x"></i></a>
     </div>
 </body>
+
+<script>
+    let myPets = [];
+    const likedPetId = `{{ data._id }}`
+    $.getJSON('/api/users/{{user._id}}/pets').then((data) => {
+        myPets = data.data;
+        console.log(myPets)
+    });
+    $('#form_match').on('submit', function (e) {
+        e.preventDefault();
+        $.post('/api/matches', {
+            pet_id: myPets[0]._id,
+            liked_pet_id: likedPetId
+        }).then((response) => {
+            console.log('submit:', response)
+            if (response.meta.matchFound)
+                alert(`It's a match! 🎉`)
+        }).fail((xhr, text, err) => {
+            const errors = xhr.responseJSON.errors;
+            console.log(errors)
+            alert(Object.keys(errors).map((e) => errors[e].msg).join('\n'))
+        })
+    })
+</script>
