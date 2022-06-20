@@ -52,14 +52,19 @@
                 </p>
             </div>
 
-            <div class="text-center py-2" style="height: 80px; border-top: 1px solid rgb(219, 219, 219);">
-                <img src="/img/reject.png" class="mx-1" style="max-height:70%;">
+            <div class="d-flex justify-content-center align-items-center text-center py-2"
+                style="height: 80px; border-top: 1px solid rgb(219, 219, 219);">
+                <img alt="Reject icon" title="Reject" src="/img/reject.png" class="mx-1" style="max-height:70%;">
                 <form method="post" id="form_match">
-                    <button type="submit">
-                        <img src="/img/logo.png" class="mx-1" style="max-height:120%;">
+                    <button type="submit" class="btn" title="Match">
+                        <img alt="Match icon" src="/img/logo.png" class="mx-1 w-50" style="max-height:120%;">
                     </button>
                 </form>
-                <img src="/img/dog.png" class="mx-1" style="max-height:70%;">
+                <!-- TODO: make a modal where the user can select their candidate pet.
+                The selected pet's id will be the value of pet_id in the AJAX request below.
+                Also update the avatar based on the candidate pet. -->
+                <img alt="Your candidate pet's icon" src="/img/dog.png" title="Select your candidate pet" class="mx-1"
+                    style="max-height:70%;">
             </div>
         </div>
     </div>
