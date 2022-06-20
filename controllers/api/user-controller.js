@@ -2,10 +2,21 @@ const { validationResult, matchedData } = require("express-validator");
 const User = require("../../models/User");
 
 const userController = {
+  index: async (req, res) => {
+    try {
+      const users = await User.find({}, '-password').lean().exec();
+      return res.json({ data: users });
+    } catch (error) {
+      return res.status(500).send(error);
+    }
+  },
   show: async (req, res) => {
     try {
-      const user = User.findById();
-    } catch (error) {}
+      const user = await User.findById(req.params.id, '-password').lean().exec();
+      return res.json({ data: user });
+    } catch (error) {
+      return res.status(500).send(error);
+    }
   },
   update: async (req, res) => {
     const errors = validationResult(req);
