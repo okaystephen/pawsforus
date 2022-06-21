@@ -74,6 +74,15 @@ const petController = {
       return res.status(500).send(error);
     }
   },
+
+  deletePet: function(req, res){
+    var pet_id = req.body.pet_id
+    Pet.deleteById(pet_id, function (err, petDocument) {
+        if(petDocument){
+          res.send("success")
+        }
+    });
+  }
 };
 
 module.exports = petController;

@@ -5,7 +5,7 @@ const profileController = {
   show: async (req, res) => {
     try {
       const { user } = req;
-      const pets = await Pet.find({ owner_id: user._id })
+      const pets = await Pet.find({ owner_id: user._id, deleted: false })
         .limit(3)
         .sort({ created_at: -1 })
         .populate("uploads")
