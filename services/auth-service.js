@@ -2,6 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Pet = require("../models/Pet");
 
 const localStrategy = new LocalStrategy(
   { usernameField: "email" },
@@ -31,6 +32,8 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id, "-password").lean().exec();
+    const pets = await Pet.find({owner_id: user._id}).populate('uploads').lean().exec();
+    user.pets = pets;
     return done(null, user);
   } catch (error) {
     return done(error);
