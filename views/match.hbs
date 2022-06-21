@@ -60,7 +60,7 @@
 
             <div class="d-flex justify-content-center align-items-center text-center py-2"
                 style="height: 80px; border-top: 1px solid rgb(219, 219, 219);">
-                <img alt="Reject icon" title="Reject" src="/img/reject.png" class="mx-1" style="max-height:70%;">
+                <img alt="Reject icon" title="Reject" src="/img/reject.png" class="mx-1" style="max-height:70%;" onclick="alert('Rejected.')">
                 <form method="post" id="form_match" class="mx-2">
                     <button type="submit" class="btn" title="Match">
                         <img alt="Match icon" src="/img/logo.png" class="mx-1 w-50" style="max-height:120%;">
@@ -133,6 +133,7 @@
         }).then((response) => {
             if (response.meta.matchFound)
                 alert(`It's a match! 🎉`)
+            else alert(`Liked!`)
         }).fail((xhr, text, err) => {
             const errors = xhr.responseJSON.errors;
             console.log(errors)
