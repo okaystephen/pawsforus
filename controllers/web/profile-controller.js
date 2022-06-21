@@ -20,6 +20,17 @@ const profileController = {
       res.status(500).send(error);
     }
   },
+  pet: async (req, res) => {
+    try {
+      const pet = await Pet.findById(req.params.id)
+        .populate("uploads")
+        .lean()
+        .exec();
+      return res.render("pet-profile", { layout: false, data: pet, user: req.user });
+    } catch (error) {
+      return res.status(500).send(error);
+    }
+  },
 };
 
 module.exports = profileController;

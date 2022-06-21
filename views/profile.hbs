@@ -59,7 +59,7 @@
                     </div>
                     {{#each data.pets}}
                     <div class="py-2 d-flex justify-content-between align-items-center">
-                        <a href="/pet-profile?id={{this._id}}" style="text-decoration: none; color: black;">
+                        <a href="/profile/pet?id={{this._id}}" style="text-decoration: none; color: black;">
                             <div class="d-flex justify-content-start align-items-center">
                                 <img src="{{this.uploads.[0].public_url}}" class="rounded-circle"
                                     alt="Photo of {{this.name}}" width="50vw" height="50vw">
