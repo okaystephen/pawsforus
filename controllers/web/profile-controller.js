@@ -22,11 +22,11 @@ const profileController = {
   },
   pet: async (req, res) => {
     try {
-      const pet = await Pet.findById(req.params.id)
+      const pet = await Pet.findById(req.query.id)
         .populate("uploads")
         .lean()
         .exec();
-      return res.render("pet-profile", { layout: false, data: pet, user: req.user });
+      return res.render("pet-profile", { layout: false, data: pet, user: req.user, q: req.query.id });
     } catch (error) {
       return res.status(500).send(error);
     }

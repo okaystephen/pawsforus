@@ -7,7 +7,7 @@ profileRoutes.use(ensureLoggedIn);
 
 profileRoutes.route("/").get(show);
 
-profileRoutes.route("/pet:id").get(pet);
+profileRoutes.route("/pet").get(pet);
 
 // TODO: edit profile
 profileRoutes.route("/edit").get((req, res) => res.json(req.user));

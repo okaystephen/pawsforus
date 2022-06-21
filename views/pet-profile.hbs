@@ -34,7 +34,9 @@
         <div class="text-left d-flex justify-content-between align-items-center">
             <h1 class="header-gradient"><a href="/profile"><i class="fa-solid fa-angle-left"></i></a></h1>
             <h1 class="header-gradient">Pet Profile</h1>
-            <i class="fa-solid fa-pencil fa-2x header-gradient mb-2"></i>
+            <a href="/edit-pet?id={{data._id}}">
+                <i class="fa-solid fa-pencil fa-2x header-gradient mb-2"></i>
+            </a>
         </div>
 
         <div class="p-3 my-2 overflow-auto shadow" style="border-radius: 15px">
@@ -42,62 +44,31 @@
                 <div class="col">
                     <div
                         style="height: 82vw; background-image: url({{data.uploads.[0].public_url}}); background-size: cover; position: relative;">
-                        <h2 class="header-weight nav-icon pl-3"
-                            style="color: white; position: absolute; bottom: 0; left: 0; text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
-                            {{data.name}}</h2>
                     </div>
                 </div>
             </div>
-            <div style="overflow: auto; max-height: 16em;">
-                <p>
-                    <i class="fa-solid fa-paw"></i> <b>{{data.breed}} {{user.pets.[1]._id}}</b>, 3 years old <br />
-                    <i class="fa-solid fa-mars"></i> <b>{{data.gender}}</b> <br />
-                    <i class="fa-solid fa-compass"></i> <b>less than a mile</b> away <br />
-                </p>
+            <div style="max-height: 18em;">
+                <h2 class="header-gradient text-center">{{data.name}}</h2>
+                <div class="d-flex flex-row justify-content-between px-4" style="font-size: 4.5vw;">
+                    <div class="d-flex flex-column">
+                        <span><i class="fa-solid fa-paw"></i> {{data.breed}}</span>
+                        <span><i class="fa-solid fa-mars-and-venus"></i> {{data.gender}}</span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span><i class="fa-solid fa-cake-candles"></i> {{dateFormat data.birthdate
+                            "MM/DD/YY"}}</span>
+                        <span><i class="fa-solid fa-weight-scale"></i> {{data.weight_kg}} kg</span>
+                    </div>
+                </div>
                 <hr />
-
-                <h4>About Me</h4>
-                <p>
+                <div>
+                    <h5><b>About Me</b></h5>
                     {{data.description}}
-                </p>
-            </div>
-
-            <div class="d-flex justify-content-center align-items-center text-center py-2"
-                style="height: 80px; border-top: 1px solid rgb(219, 219, 219);">
-                <img alt="Reject icon" title="Reject" src="/img/reject.png" class="mx-1" style="max-height:70%;">
-                <form method="post" id="form_match">
-                    <button type="submit" class="btn" title="Match">
-                        <img alt="Match icon" src="/img/logo.png" class="mx-1 w-50" style="max-height:120%;">
-                    </button>
-                </form>
-                <!-- TODO: make a modal where the user can select their candidate pet.
-                The selected pet's id will be the value of pet_id in the AJAX request below.
-                Also update the avatar based on the candidate pet. -->
-                <img alt="Your candidate pet's icon" src="/img/dog.png" title="Select your candidate pet" class="mx-1"
-                    style="max-height:70%; border-radius: 100px;" id="candidate-img" data-toggle="modal"
-                    data-target="#selectModal">
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="selectModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="selectModalTitle">Select your candidate pet</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
-                <div class="modal-body">
-                    {{#each user.pets}}
-                    <div class="d-flex flex-row justify-content-start align-items-center py-3" id="{{this._id}}"
-                        onclick="selectPet('{{this.uploads.[0].public_url}}')">
-                        <img src="{{this.uploads.[0].public_url}}" width="60vw" style="border-radius: 100px;">
-                        <div class="ml-2">{{this.name}}</div>
-                    </div>
-                    {{/each}}
+                <hr />
+                <div class="pb-4">
+                    <h5><b>Documents</b></h5>
+                    <a href="#">Birth Certificate.pdf</a>
                 </div>
             </div>
         </div>
@@ -123,32 +94,3 @@
         </div>
     </div>
 </body>
-
-<script>
-    let myPets = [];
-    const likedPetId = `{{ data._id }}`
-    $.getJSON('/api/users/{{user._id}}/pets').then((data) => {
-        myPets = data.data;
-        console.log(myPets)
-    });
-    $('#form_match').on('submit', function (e) {
-        e.preventDefault();
-        $.post('/api/matches', {
-            pet_id: myPets[0]._id,
-            liked_pet_id: likedPetId
-        }).then((response) => {
-            console.log('submit:', response)
-            if (response.meta.matchFound)
-                alert(`It's a match! 🎉`)
-        }).fail((xhr, text, err) => {
-            const errors = xhr.responseJSON.errors;
-            console.log(errors)
-            alert(Object.keys(errors).map((e) => errors[e].msg).join('\n'))
-        })
-    })
-
-    function selectPet(url) {
-        $('#candidate-img').attr('src', url);
-        $('#selectModal').modal('hide');
-    }
-</script>
