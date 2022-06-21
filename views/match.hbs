@@ -144,5 +144,8 @@
         petId = _petId
         $('#candidate-img').attr('src', url);
         $('#selectModal').modal('hide');
+        console.log({ petId, url })
     }
+
+    selectPet('{{user.pets.[0]._id}}', '{{user.pets.[0].uploads.[0].public_url}}')
 </script>
