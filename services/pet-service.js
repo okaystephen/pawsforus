@@ -14,6 +14,8 @@ const petService = {
         .ne(user._id)
         .where('status')
         .equals(Pet.getStatuses().FOR_MATCHING)
+        .where('deleted')
+        .equals("false")
         .populate("uploads")
         .lean()
         .exec();

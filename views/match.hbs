@@ -46,7 +46,7 @@
             </div>
             <div style="overflow: auto; max-height: 16em;">
                 <p>
-                    <i class="fa-solid fa-paw"></i> <b>{{data.breed}}</b>, 3 years old <br />
+                    <i class="fa-solid fa-paw"></i> <b>{{#match data.pet_type "Others"}}{{data.breed_others}}{{/match}}{{#notmatch data.pet_type "Others"}}{{data.breed}}{{/notmatch}}</b>, 3 years old <br />
                     <i class="fa-solid fa-mars"></i> <b>{{data.gender}}</b> <br />
                     <i class="fa-solid fa-compass"></i> <b>less than a mile</b> away <br />
                 </p>
