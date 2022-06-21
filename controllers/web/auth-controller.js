@@ -100,11 +100,6 @@ const authController = {
       layout: false,
     });
   },
-  chat: (req, res) => {
-    res.render("chat", {
-      layout: false,
-    });
-  },
   chatbox: (req, res) => {
     res.render("chatbox", {
       layout: false,

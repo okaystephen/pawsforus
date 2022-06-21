@@ -6,7 +6,6 @@ const {
   postRegister,
   postLogin,
   select,
-  chat,
   chatbox,
 } = require("../../controllers/web/auth-controller");
 const {
@@ -30,7 +29,6 @@ authRoutes
 // set index as login page
 authRoutes.route("/").get((req, res) => res.redirect("/login"));
 authRoutes.route("/select").get(select);
-authRoutes.route("/chat").get(chat);
 authRoutes.route("/chatbox").get(chatbox);
 authRoutes
   .route("/whoami")
