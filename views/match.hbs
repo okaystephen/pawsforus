@@ -11,9 +11,6 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -64,14 +61,11 @@
             <div class="d-flex justify-content-center align-items-center text-center py-2"
                 style="height: 80px; border-top: 1px solid rgb(219, 219, 219);">
                 <img alt="Reject icon" title="Reject" src="/img/reject.png" class="mx-1" style="max-height:70%;">
-                <form method="post" id="form_match">
+                <form method="post" id="form_match" class="mx-2">
                     <button type="submit" class="btn" title="Match">
                         <img alt="Match icon" src="/img/logo.png" class="mx-1 w-50" style="max-height:120%;">
                     </button>
                 </form>
-                <!-- TODO: make a modal where the user can select their candidate pet.
-                The selected pet's id will be the value of pet_id in the AJAX request below.
-                Also update the avatar based on the candidate pet. -->
                 <img alt="Your candidate pet's icon" src="/img/dog.png" title="Select your candidate pet" class="mx-1"
                     style="max-height:70%; border-radius: 100px;" id="candidate-img" data-toggle="modal"
                     data-target="#selectModal">
@@ -92,7 +86,7 @@
                 <div class="modal-body">
                     {{#each user.pets}}
                     <div class="d-flex flex-row justify-content-start align-items-center py-3" id="{{this._id}}"
-                        onclick="selectPet('{{this.uploads.[0].public_url}}')">
+                        onclick="selectPet('{{this._id}}','{{this.uploads.[0].public_url}}')">
                         <img src="{{this.uploads.[0].public_url}}" width="60vw" style="border-radius: 100px;">
                         <div class="ml-2">{{this.name}}</div>
                     </div>
@@ -129,15 +123,12 @@
 </body>
 
 <script>
-    let myPets = [];
+    let petId = null;
     const likedPetId = `{{ data._id }}`
-    $.getJSON('/api/users/{{user._id}}/pets').then((data) => {
-        myPets = data.data;
-    });
     $('#form_match').on('submit', function (e) {
         e.preventDefault();
         $.post('/api/matches', {
-            pet_id: myPets[0]._id,
+            pet_id: petId,
             liked_pet_id: likedPetId
         }).then((response) => {
             if (response.meta.matchFound)
@@ -148,7 +139,8 @@
         })
     })
 
-    function selectPet(url) {
+    function selectPet(_petId, url) {
+        petId = _petId
         $('#candidate-img').attr('src', url);
         $('#selectModal').modal('hide');
     }
