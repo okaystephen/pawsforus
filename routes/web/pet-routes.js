@@ -4,7 +4,8 @@ const {
   postAddPet,
   deletePet,
   getEditPet,
-  postEditPet
+  postEditPet,
+  getAllPets
 } = require("../../controllers/web/pet-controller");
 const { addPetValidator, editPetValidator } = require("../../validators/pet-validator");
 const ensureLoggedIn = require("../../middleware/ensure-logged-in");
@@ -26,5 +27,9 @@ petRoutes
   .route("/edit-pet")
   .get(ensureLoggedIn, getEditPet)
   .post(ensureLoggedIn, editPetValidator, postEditPet);
+
+petRoutes
+  .route("/all-pets")
+  .get(ensureLoggedIn, getAllPets)
 
 module.exports = { router: petRoutes, prefix: "/" };
