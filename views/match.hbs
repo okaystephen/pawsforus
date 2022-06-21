@@ -73,7 +73,8 @@
                 The selected pet's id will be the value of pet_id in the AJAX request below.
                 Also update the avatar based on the candidate pet. -->
                 <img alt="Your candidate pet's icon" src="/img/dog.png" title="Select your candidate pet" class="mx-1"
-                    style="max-height:70%;" data-toggle="modal" data-target="#selectModal">
+                    style="max-height:70%; border-radius: 100px;" id="candidate-img" data-toggle="modal"
+                    data-target="#selectModal">
             </div>
         </div>
     </div>
@@ -89,7 +90,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    {{#each user.pets}}
+                    <div class="d-flex flex-row justify-content-start align-items-center py-3" id="{{this._id}}"
+                        onclick="selectPet('{{this.uploads.[0].public_url}}')">
+                        <img src="{{this.uploads.[0].public_url}}" width="60vw" style="border-radius: 100px;">
+                        <div class="ml-2">{{this.name}}</div>
+                    </div>
+                    {{/each}}
                 </div>
                 {{!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -143,4 +150,9 @@
             alert(Object.keys(errors).map((e) => errors[e].msg).join('\n'))
         })
     })
+
+    function selectPet(url) {
+        $('#candidate-img').attr('src', url);
+        $('#selectModal').modal('hide');
+    }
 </script>
