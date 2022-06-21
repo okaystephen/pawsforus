@@ -12,12 +12,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="/js/form-validator.js"></script>
     <script src="https://kit.fontawesome.com/7e6ab4004f.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
     <!-- TITLE -->
     <title>PawsForUs - My Profile</title>
@@ -30,7 +36,7 @@
             <h1 class="header-gradient pt-2">My Account</h1>
             <i class="fa-solid fa-gear fa-2x header-gradient"></i>
         </div>
-        <div class="pt-2 pb-4 mt-2 mb-5 overflow-auto">
+        <div class="pt-2 pb-5 mt-2 mb-5 overflow-auto">
             {{!-- Personal Info --}}
             <div class="row">
                 <div class="col">
@@ -51,15 +57,18 @@
                         <div class="header-gradient" style="font-weight: 400;">View All <i
                                 class="fa-solid fa-arrow-right-long"></i></div>
                     </div>
-
                     {{#each data.pets}}
                     <div class="py-2 d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <img src="{{this.uploads.[0].public_url}}" class="rounded-circle"
-                                alt="Photo of {{this.name}}" width="50vw" height="50vw">
-                            <div class="ml-2"><b>{{this.name}}</b></div>
-                        </div>
-                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" role="button" data-name="{{this.name}}" data-pet="{{this._id}}" data-toggle="modal" data-target="#modalDeletePet"></i>
+                        <a href="/profile/pet?id={{this._id}}" style="text-decoration: none; color: black;">
+                            <div class="d-flex justify-content-start align-items-center">
+                                <img src="{{this.uploads.[0].public_url}}" class="rounded-circle"
+                                    alt="Photo of {{this.name}}" width="50vw" height="50vw">
+                                <div class="ml-2"><b>{{this.name}}</b></div>
+                            </div>
+                        </a>
+                        <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" role="button"
+                            data-name="{{this.name}}" data-pet="{{this._id}}" data-toggle="modal"
+                            data-target="#modalDeletePet"></i>
                     </div>
                     {{else}}
                     <p>You don't have any pets. <a class="header-gradient font-weight-normal" href="/add-pet">Create one
@@ -120,7 +129,7 @@
             <small class="pt-2 text-white"><b>Discover</b></small>
         </div>
         <div class="d-flex flex-column justify-content-center">
-            <a href="/match"><img src="img/paw-outline.png" width="55vw"></a>
+            <a href="/match"><img src="/img/paw-outline.png" width="55vw"></a>
             <small class="pt-2 text-white"><b>Match</b></small>
         </div>
         <div class="d-flex flex-column justify-content-center">
@@ -134,28 +143,28 @@
     </div>
 
     {{!-- Delete Pet Modal --}}
-<div class="modal fade" id="modalDeletePet" tabindex="-1" role="dialog" aria-hidden="true"
-    style="font-family: 'Montserrat', sans-serif;">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Delete Pet Account</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                You'll permanently lose all your pet account's data (profile, messages, photos). 
-                This process cannot be undone. 
-                Confirm <span style="color:red">delete</span>?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger" id="deletePetSubmit">Delete</button>
+    <div class="modal fade" id="modalDeletePet" tabindex="-1" role="dialog" aria-hidden="true"
+        style="font-family: 'Montserrat', sans-serif;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Pet Account</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You'll permanently lose all your pet account's data (profile, messages, photos).
+                    This process cannot be undone.
+                    Confirm <span style="color:red">delete</span>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" id="deletePetSubmit">Delete</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 <script>
@@ -164,7 +173,7 @@
         $(e).parent().remove()
     }
 
-    
+
     $('#modalDeletePet').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var pet_name = button.data('name');
@@ -193,8 +202,8 @@
                 error: function (result) {
                     console.log("error")
                     modal.find('.modal-body').html('<p>Delete unsuccessful... Please refresh the page and try again.</p>')
-                        modal.find('.modal-title').html('<p>Failed! <i class="fas fa-exclamation-circle" style="color: rgb(197, 52, 52)"></i></p>')
-                        modal.find('.modal-footer').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>')
+                    modal.find('.modal-title').html('<p>Failed! <i class="fas fa-exclamation-circle" style="color: rgb(197, 52, 52)"></i></p>')
+                    modal.find('.modal-footer').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>')
                 }
             })
         });

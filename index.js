@@ -24,14 +24,18 @@ app.use(logger);
 
 // HBS
 const hbsExt = ".hbs";
-const hbs = create({ extname: hbsExt,
-    helpers: {
-      // Use this helper on <select> elements to retain option when submitting form data
-      select: function (value, input) {
-        return value === input ? ' selected' : '';
-      },
-      dateFormat: require('handlebars-dateformat'),
-    }
+const hbs = create({
+  extname: hbsExt,
+  helpers: {
+    // Use this helper on <select> elements to retain option when submitting form data
+    select: function (value, input) {
+      return value === input ? ' selected' : '';
+    },
+    dateFormat: require('handlebars-dateformat'),
+    equals: function (arg1, arg2, options) {
+      return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    },
+  }
 });
 app.engine(hbsExt, hbs.engine);
 app.set("view engine", hbsExt);
