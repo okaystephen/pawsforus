@@ -82,7 +82,7 @@
                 <div class="col">
                     <h4><b>Analytics</b></h4>
                     <div class="text-center d-flex justify-content-center align-items-center">
-                        <h1 class="header-gradient">11</h1>
+                        <h1 class="header-gradient" style="border-style: solid; border-color: #FFE03C; padding: 10px; border-radius: 50%; width: 70px; height: 70px">{{data.total_count}}</h1>
                         <div class="ml-2 pb-1">matches this month</div>
                     </div>
                 </div>
@@ -92,29 +92,17 @@
             <div class="row pt-3">
                 <div class="col">
                     <h4><b>Matches Per Pet</b></h4>
-                    <div class="py-2 d-flex justify-content-between align-items-center">
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/img/bruno.png" width="90vw">
-                            <b>Bruno</b>
-                            <div>6</div>
+                    <div class="py-2 d-flex align-items-center">
+                         {{#each data.pets}}
+                            <div class="d-flex flex-column align-items-center" style="margin: 5px;">
+                            <img src="{{this.uploads.[0].public_url}}" class="rounded-circle" alt="Photo of {{this.name}}" width="90vw"> 
+                            <b>{{this.name}}</b>
+                            <div>{{this.match_count}}</div>
                         </div>
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/img/dog.png" width="110vw">
-                            <b>Princeton</b>
-                            <div>10</div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/img/fred.png" width="70vw">
-                            <b>Fred</b>
-                            <div>4</div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center border-top pt-3">
-                        <img src="/img/lisa.png" width="60vw">
-                        <div class="d-flex flex-column align-items-start ml-2">
-                            <b>Lisa</b>
-                            <div>3 matches</div>
-                        </div>
+                        {{else}}
+                        <p>You don't have any pets. <a class="header-gradient font-weight-normal" href="/add-pet">Create one
+                                now!</a></p>
+                        {{/each}}
                     </div>
                 </div>
             </div>

@@ -21,6 +21,9 @@ const matchService = {
     // If it exists, then it's a match.
     if (otherMatchSide) {
       console.log("IS A MATCH");
+      await Pet.findOneAndUpdate({_id: pet_id}, {$inc:{'match_count': 1}})
+      await Pet.findOneAndUpdate({_id: liked_pet_id}, {$inc:{'match_count': 1}})
+      
       const user_ids = (
         await Pet.find({ _id: { $in: [pet_id, liked_pet_id] } })
       ).map((pet) => pet.owner_id);

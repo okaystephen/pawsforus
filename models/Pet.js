@@ -28,6 +28,7 @@ const petSchema = new mongoose.Schema(
       required: true,
     },
     weight_kg: { type: String, required: true },
+    match_count: { type: Number, default: 0, required: true },
     uploads: [{ type: mongoose.Schema.Types.ObjectId, ref: "Upload" }],
     //docus: [{ type: mongoose.Schema.Types.ObjectId, ref: "Upload" }],
   },

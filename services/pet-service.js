@@ -25,6 +25,36 @@ const petService = {
       throw error;
     }
   },
+   /**
+   * Returns total match count for all pets
+   *
+   * @param {User} user the user who is looking for a match for their pet
+   */
+    getTotalPetMatches: async (user) => {
+      try {
+        const pet = Pet.aggregate([
+              {
+                  $match: {
+                      owner_id: user._id,
+                      deleted: false,
+                      status: Pet.getStatuses().FOR_MATCHING
+                  }
+              },
+              {
+                $group: {
+                    _id: '',
+                    count: {
+                        $sum: '$match_count'
+                    }
+                }
+              },
+          ])  
+        const result = await pet.exec()
+        return result
+      } catch (error) {
+        throw error;
+      }
+    },
 };
 
 module.exports = petService;
