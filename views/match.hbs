@@ -64,17 +64,52 @@
                 The selected pet's id will be the value of pet_id in the AJAX request below.
                 Also update the avatar based on the candidate pet. -->
                 <img alt="Your candidate pet's icon" src="/img/dog.png" title="Select your candidate pet" class="mx-1"
-                    style="max-height:70%;">
+                    style="max-height:70%;" data-toggle="modal" data-target="#selectModal">
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="selectModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="selectModalTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="px-5 py-3 footer-background text-center d-flex flex-row justify-content-between align-items-center"
         style="overflow: hidden;position: fixed;bottom: 0;width: 100%;">
-        <a href="/discover"><i class="nav-icon far fa-compass fa-3x"></i></a>
-        <a href="/match"><i class="nav-icon fas fa-paw fa-3x"></i></a>
-        <a href="/chat"><i class="nav-icon far fa-comments fa-3x"></i></a>
-        <a href="/profile"><i class="nav-icon far fa-user fa-3x"></i></a>
+        <div class="d-flex flex-column justify-content-center">
+            <a href="/discover"><i class="nav-icon far fa-compass fa-3x"></i></a>
+            <small class="pt-2 text-white"><b>Discover</b></small>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <a href="/match"><i class="nav-icon fas fa-paw fa-3x"></i></a>
+            <small class="pt-2 text-white"><b>Match</b></small>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <a href="/chat"><i class="nav-icon far fa-comments fa-3x"></i></a>
+            <small class="pt-2 text-white"><b>Chat</b></small>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <a href="/profile"><i class="nav-icon far fa-user fa-3x"></i></a>
+            <small class="pt-2 text-white"><b>Profile</b></small>
+        </div>
     </div>
+
 </body>
 
 <script>

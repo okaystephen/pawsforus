@@ -58,7 +58,8 @@
                         <i class="mr-1 fa-solid fa-trash fa-xl" style="color: red;" onclick="deletePet(this)"></i>
                     </div>
                     {{else}}
-                    <p>You don't have any pets. <a class="header-gradient font-weight-normal" href="/add-pet">Create one now!</a></p>
+                    <p>You don't have any pets. <a class="header-gradient font-weight-normal" href="/add-pet">Create one
+                            now!</a></p>
                     {{/each}}
 
                 </div>
@@ -107,12 +108,25 @@
             </div>
         </div>
     </div>
+
     <div class="px-5 py-3 footer-background text-center d-flex flex-row justify-content-between align-items-center"
         style="overflow: hidden;position: fixed;bottom: 0;width: 100%;">
-        <a href="/discover"><i class="nav-icon far fa-compass fa-3x"></i></a>
-        <a href="/match"><img src="img/paw-outline.png" width="55vw"></a>
-        <a href="/chat"><i class="nav-icon far fa-comments fa-3x"></i></a>
-        <a href="/profile"><i class="nav-icon fas fa-user fa-3x"></i></a>
+        <div class="d-flex flex-column justify-content-center">
+            <a href="/discover"><i class="nav-icon far fa-compass fa-3x"></i></a>
+            <small class="pt-2 text-white"><b>Discover</b></small>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <a href="/match"><img src="img/paw-outline.png" width="55vw"></a>
+            <small class="pt-2 text-white"><b>Match</b></small>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <a href="/chat"><i class="nav-icon far fa-comments fa-3x"></i></a>
+            <small class="pt-2 text-white"><b>Chat</b></small>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <a href="/profile"><i class="nav-icon fas fa-user fa-3x"></i></a>
+            <small class="pt-2 text-white"><b>Profile</b></small>
+        </div>
     </div>
 </body>
 
