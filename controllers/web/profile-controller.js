@@ -14,10 +14,16 @@ const profileController = {
         .populate("uploads")
         .lean()
         .exec();
+      
+      const all_pets = await Pet.find({ owner_id: user._id, deleted: false })
+        .sort({ created_at: -1 })
+        .populate("uploads")
+        .lean()
+        .exec();
 
       res.render("profile", {
         layout: false,
-        data: { user, pets, total_count: total_count[0].count },
+        data: { user, pets, all_pets, total_count: total_count[0].count },
       });
     } catch (error) {
       res.status(500).send(error);

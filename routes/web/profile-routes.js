@@ -9,9 +9,7 @@ profileRoutes.route("/").get(show);
 
 profileRoutes.route("/pet").get(pet);
 
-profileRoutes
-  .route("/all-pets")
-  .get(ensureLoggedIn, getAllPets)
+profileRoutes.route("/all-pets").get(getAllPets); 
 
 // TODO: edit profile
 profileRoutes.route("/edit").get((req, res) => res.json(req.user));
