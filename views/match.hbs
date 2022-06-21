@@ -135,6 +135,7 @@
                 alert(`It's a match! 🎉`)
         }).fail((xhr, text, err) => {
             const errors = xhr.responseJSON.errors;
+            console.log(errors)
             alert(Object.keys(errors).map((e) => errors[e].msg).join('\n'))
         })
     })
