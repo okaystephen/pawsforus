@@ -18,6 +18,10 @@ const petSchema = new mongoose.Schema(
     breed: { type: String },
     breed_others: { type: String },
     gender: { type: String, enum: ["Male", "Female"], required: true },
+    pet_likes: { type: String, required: true },
+    pet_dislikes: { type: String, required: true },
+    pet_allergies: { type: String, required: true },
+    pet_vaccines: { type: String, required: true },
     status: {
       type: String,
       enum: [STATUSES.FOR_MATCHING, STATUSES.FOR_ADOPTION, STATUSES.FOR_SALE],
@@ -25,6 +29,7 @@ const petSchema = new mongoose.Schema(
     },
     weight_kg: { type: String, required: true },
     uploads: [{ type: mongoose.Schema.Types.ObjectId, ref: "Upload" }],
+    //docus: [{ type: mongoose.Schema.Types.ObjectId, ref: "Upload" }],
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },

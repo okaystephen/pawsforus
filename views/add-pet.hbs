@@ -100,6 +100,30 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="pet_likes">Likes</label>
+                    <input type="text" class="form-control" id="pet_likes" name="pet_likes" placeholder="Enter your pet likes" value="{{inputs.pet_likes}}"required>
+                </div>
+                <div class="form-group">
+                    <label for="pet_dislikes">Dislikes</label>
+                    <input type="text" class="form-control" id="pet_dislikes" name="pet_dislikes" placeholder="Enter your pet dislikes" value="{{inputs.pet_dislikes}}"required>
+                </div>
+                <div class="form-group">
+                    <label for="pet_allergies">Allergies</label>
+                    <input type="text" class="form-control" id="pet_allergies" name="pet_allergies" placeholder="Enter your pet allergies" value="{{inputs.pet_allergies}}"required>
+                </div>
+                <div class="form-group">
+                    <label for="pet_vaccines">Vaccines</label>
+                    <input type="text" class="form-control" id="pet_vaccines" name="pet_vaccines" placeholder="Enter your pet vaccines" value="{{inputs.pet_vaccines}}"required>
+                </div>
+                {{!-- <div class="form-group">
+                    <label for="docus">Documents</label>
+                    <small style="font-style:italic">(Only accepts .pdf format)</small>
+                    <input type="file" class="form-control-file" id="docus" name="docus" accept="application/pdf" multiple>
+                     <p style="color: red; font-size: 13px">
+                        {{errors.docus.msg}}
+                    </p>
+                </div> --}}
+                <div class="form-group">
                     <label for="pet_status">Status</label>
                     <select class="form-control" id="pet_status" name="pet_status" required>
                         <option value="" selected>Select status...</option>

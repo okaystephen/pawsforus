@@ -49,6 +49,45 @@ const petValidator = {
       .notEmpty()
       .withMessage("Pet weight is required.")
       .escape(),
+    body("pet_likes")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet likes is required.")
+      .escape(),
+    body("pet_dislikes")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet dislikes is required.")
+      .escape(),
+    body("pet_allergies")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet allergies is required.")
+      .escape(),
+    body("pet_vaccines")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet vaccines is required.")
+      .escape(),
+    // check("docus")
+    //   .custom((value, { req }) => {
+    //     if (!req.files.docus)
+    //       throw new Error("Please upload atleast one document of your pet.");
+    //     return true;
+    //   })
+    //   .custom((value, { req }) => {
+    //     const allowed = ["application/pdf"];
+
+    //     const isValidMimeType = (el) => {
+    //       const val = allowed.includes(el.mimetype);
+
+    //       return val;
+    //     };
+
+    //     if (!req.files.docus.every(isValidMimeType))
+    //       throw new Error("Please only submit .pdf documents.");
+    //     return true;
+    //   }),
     body("pet_status")
       .notEmpty()
       .withMessage("Pet status is required.")

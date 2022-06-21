@@ -34,6 +34,10 @@ const petController = {
       pet_breed_others,
       pet_gender,
       pet_weight,
+      pet_likes,
+      pet_dislikes,
+      pet_allergies,
+      pet_vaccines,
       pet_status,
     } = matched;
 
@@ -49,6 +53,10 @@ const petController = {
         breed_others: pet_breed_others,
         gender: pet_gender,
         status: pet_status,
+        pet_likes,
+        pet_dislikes,
+        pet_allergies,
+        pet_vaccines,
         weight_kg: pet_weight,
         uploads: [],
       });
@@ -64,9 +72,18 @@ const petController = {
         return u;
       });
 
+      // const docu_uploads = req.files.docus.map((docu) => {
+      //   const u = new Upload({
+      //     original_name: docu.originalname,
+      //     filename: docu.filename,
+      //     public_url: docu.publicUrl,
+      //   });
+      //   pet.docus.push(u._id);
+      //   return u;
+      // });
+
       await pet.save();
       const uploadsResult = await Upload.bulkSave(uploads);
-
       console.log("pet profile added", uploadsResult);
       return res.redirect("/discover");
     } catch (error) {
