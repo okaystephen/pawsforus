@@ -25,18 +25,7 @@ const chatService = {
       (pet) => pet._id
     );
 
-    // Get all of my pets that have tried matching
-    // const myPetMatches = await Match.find()
-    //   .distinct("pet_id", { pet_id: { $in: myPetsIds } })
-    //   .exec();
-
-    // const test = myPetMatches[0];
-    // // Then get the pets that matched with mine
-    // const compatibles = await Match.find({
-    //   liked_pet_id: { $in: [test] },
-    // });
-
-    const x = await Match.aggregate()
+    let matchedPets = await Match.aggregate()
       .match({ pet_id: { $in: myPetsIds } })
       .lookup({
         from: "matches",
@@ -57,7 +46,15 @@ const chatService = {
       })
       .match({ res: { $ne: [] } })
       .exec();
-    console.log({ x, myPetsIds }, myPetsIds.length, x.length);
+
+    matchedPets = await Match.populate(matchedPets, {
+      path: "pet_id liked_pet_id",
+      populate: { path: "uploads" },
+      options: { lean: true },
+    });
+
+    console.log({ matchedPets, myPetsIds });
+    return { matchedPets };
   },
 };
 
