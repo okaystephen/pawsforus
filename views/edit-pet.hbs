@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/7e6ab4004f.js" crossorigin="anonymous"></script>
 
     <!-- TITLE -->
-    <title>PawsForUs - Add Pet</title>
+    <title>PawsForUs - Edit Pet</title>
 
 </head>
 
@@ -24,10 +24,10 @@
     <div class="container-fluid body-container d-flex flex-column justify-content-start align-items-left py-4">
         <div class="p-4 text-left d-flex justify-content-between align-items-center">
             <h1 class="header-gradient"><a href="/profile"><i class="fa-solid fa-angle-left"></i></a></h1>
-            <h1 class="header-gradient pt-2">Add Pet Profile</h1>
+            <h1 class="header-gradient pt-2">Edit Pet Profile</h1>
         </div>
         <div class="px-4 pt-2 pb-5 mb-5 overflow-auto">
-            <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
+            <form class="needs-validation" method="POST" novalidate>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{inputs.name}}"required>
@@ -132,14 +132,14 @@
                         <option value="For sale" {{select "For sale" inputs.status}}>For sale</option>
                     </select>
                 </div>
-                <div class="form-group">
+                {{!-- <div class="form-group">
                     <label for="photos">Images</label>
                     <small style="font-style:italic">(Only accepts jpeg and png format)</small>
                     <input type="file" class="form-control-file" id="photos" name="photos" accept="image/jpeg, image/png" multiple>
                      <p style="color: red; font-size: 13px">
                         {{errors.photos.msg}}
                     </p>
-                </div>
+                </div> --}}
                 <button type="submit" class="btn btn-warning w-100 mt-2">Submit</button>
             </form>
         </div>

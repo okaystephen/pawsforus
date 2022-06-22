@@ -2,17 +2,17 @@ const { body, check } = require("express-validator");
 
 const petValidator = {
   addPetValidator: [
-    body("pet_name")
+    body("name")
       .trim()
       .notEmpty()
       .withMessage("Pet name is required.")
       .escape(),
-    body("pet_about")
+    body("description")
       .trim()
       .notEmpty()
       .withMessage("Pet description is required.")
       .escape(),
-    body("pet_birth")
+    body("birthdate")
       .notEmpty()
       .withMessage("Pet birth is required.")
       .custom((value, { req, location, path }) => {
@@ -30,26 +30,65 @@ const petValidator = {
       .notEmpty()
       .withMessage("Please fill this out.")
       .escape(),
-    body("pet_breed")
+    body("breed")
       .if((value, { req }) => req.body.pet_type !== "Others")
       .notEmpty()
       .withMessage("Pet breed is required.")
       .escape(),
-    body("pet_breed_others")
+    body("breed_others")
       .if((value, { req }) => req.body.pet_type === "Others")
       .trim()
       .notEmpty()
       .withMessage("Please fill this out.")
       .escape(),
-    body("pet_gender")
+    body("gender")
       .notEmpty()
       .withMessage("Pet gender is required.")
       .escape(),
-    body("pet_weight")
+    body("weight_kg")
       .notEmpty()
       .withMessage("Pet weight is required.")
       .escape(),
-    body("pet_status")
+    body("pet_likes")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet likes is required.")
+      .escape(),
+    body("pet_dislikes")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet dislikes is required.")
+      .escape(),
+    body("pet_allergies")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet allergies is required.")
+      .escape(),
+    body("pet_vaccines")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet vaccines is required.")
+      .escape(),
+    // check("docus")
+    //   .custom((value, { req }) => {
+    //     if (!req.files.docus)
+    //       throw new Error("Please upload atleast one document of your pet.");
+    //     return true;
+    //   })
+    //   .custom((value, { req }) => {
+    //     const allowed = ["application/pdf"];
+
+    //     const isValidMimeType = (el) => {
+    //       const val = allowed.includes(el.mimetype);
+
+    //       return val;
+    //     };
+
+    //     if (!req.files.docus.every(isValidMimeType))
+    //       throw new Error("Please only submit .pdf documents.");
+    //     return true;
+    //   }),
+    body("status")
       .notEmpty()
       .withMessage("Pet status is required.")
       .escape(),
@@ -72,6 +111,79 @@ const petValidator = {
           throw new Error("Please only submit jpeg or png format for images.");
         return true;
       }),
+  ],
+  editPetValidator: [
+    body("name")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet name is required.")
+      .escape(),
+    body("description")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet description is required.")
+      .escape(),
+    body("birthdate")
+      .notEmpty()
+      .withMessage("Pet birth is required.")
+      .custom((value, { req, location, path }) => {
+        var [year, month, day] = value.split("-");
+        var input = Date.UTC(Number(year), Number(month) - 1, Number(day));
+        var now = Date.now();
+
+        return input < now;
+      })
+      .withMessage("Please enter a valid date."),
+    body("pet_type").notEmpty().withMessage("Pet type is required.").escape(),
+    body("pet_type_others")
+      .if((value, { req }) => req.body.pet_type === "Others")
+      .trim()
+      .notEmpty()
+      .withMessage("Please fill this out.")
+      .escape(),
+    body("breed")
+      .if((value, { req }) => req.body.pet_type !== "Others")
+      .notEmpty()
+      .withMessage("Pet breed is required.")
+      .escape(),
+    body("breed_others")
+      .if((value, { req }) => req.body.pet_type === "Others")
+      .trim()
+      .notEmpty()
+      .withMessage("Please fill this out.")
+      .escape(),
+    body("gender")
+      .notEmpty()
+      .withMessage("Pet gender is required.")
+      .escape(),
+    body("weight_kg")
+      .notEmpty()
+      .withMessage("Pet weight is required.")
+      .escape(),
+    body("pet_likes")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet likes is required.")
+      .escape(),
+    body("pet_dislikes")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet dislikes is required.")
+      .escape(),
+    body("pet_allergies")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet allergies is required.")
+      .escape(),
+    body("pet_vaccines")
+      .trim()
+      .notEmpty()
+      .withMessage("Pet vaccines is required.")
+      .escape(),
+    body("status")
+      .notEmpty()
+      .withMessage("Pet status is required.")
+      .escape(),
   ],
 };
 

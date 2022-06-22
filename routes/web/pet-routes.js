@@ -2,9 +2,11 @@ const express = require("express");
 const {
   showAddPet,
   postAddPet,
-  deletePet
+  deletePet,
+  getEditPet,
+  postEditPet
 } = require("../../controllers/web/pet-controller");
-const { addPetValidator } = require("../../validators/pet-validator");
+const { addPetValidator, editPetValidator } = require("../../validators/pet-validator");
 const ensureLoggedIn = require("../../middleware/ensure-logged-in");
 const {
   addPetPhotosValidator,
@@ -19,5 +21,10 @@ petRoutes
 petRoutes
   .route("/delete-pet")
   .post(ensureLoggedIn, deletePet);
+
+petRoutes
+  .route("/edit-pet")
+  .get(ensureLoggedIn, getEditPet)
+  .post(ensureLoggedIn, editPetValidator, postEditPet);
 
 module.exports = { router: petRoutes, prefix: "/" };
