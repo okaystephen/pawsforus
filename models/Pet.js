@@ -37,7 +37,7 @@ const petSchema = new mongoose.Schema(
   }
 );
 
-petSchema.plugin(mongooseDelete, { deletedAt: true });
+petSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: "all" });
 
 petSchema.statics.getStatuses = function () {
   return STATUSES;
