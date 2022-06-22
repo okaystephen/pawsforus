@@ -20,37 +20,44 @@ const chatService = {
   },
   // TODO: find a way to get the chat room where this user belongs and also the match that caused the chat room to be created
   getRooms: async ({ user_id }) => {
-    // Get all of my pets
+    // Get all of my pets' IDs
     const myPetsIds = (await Pet.find({ owner_id: user_id })).map(
       (pet) => pet._id
     );
 
     // Get all of my pets that have tried matching
-    const myPetMatches = await Match.find()
-      .distinct("pet_id", { pet_id: { $in: myPetsIds } })
-      .exec();
+    // const myPetMatches = await Match.find()
+    //   .distinct("pet_id", { pet_id: { $in: myPetsIds } })
+    //   .exec();
 
-    const test = myPetMatches[0];
-    // Then get the pets that matched with mine
-    const compatibles = await Match.find({
-      liked_pet_id: { $in: [test] },
-    });
+    // const test = myPetMatches[0];
+    // // Then get the pets that matched with mine
+    // const compatibles = await Match.find({
+    //   liked_pet_id: { $in: [test] },
+    // });
 
     const x = await Match.aggregate()
+      .match({ pet_id: { $in: myPetsIds } })
       .lookup({
         from: "matches",
-        localField: "pet_id",
-        foreignField: "liked_pet_id",
-        as: "matches",
+        let: { pi: "$pet_id", lpi: "$liked_pet_id" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [
+                  { $eq: ["$$pi", "$liked_pet_id"] },
+                  { $eq: ["$$lpi", "$pet_id"] },
+                ],
+              },
+            },
+          },
+        ],
+        as: "res",
       })
-      .match({ matches: { $ne: [] } })
-      .project("matches")
+      .match({ res: { $ne: [] } })
       .exec();
-    console.log(
-      { x: x.map((_) => _.matches) },
-      myPetMatches.length,
-      compatibles.length
-    );
+    console.log({ x, myPetsIds }, myPetsIds.length, x.length);
   },
 };
 
