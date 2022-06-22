@@ -1,4 +1,5 @@
 const chatService = require("../../services/chat-service");
+const matchService = require("../../services/match-service");
 const petService = require("../../services/pet-service");
 
 const chatController = {
@@ -17,7 +18,7 @@ const chatController = {
       });
     }
 
-    const { matchedPets } = await chatService.getMatchedPets({
+    const { matchedPets } = await matchService.getMatchedPets({
       selectedPetId: selectedPet._id,
     });
 
