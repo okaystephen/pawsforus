@@ -44,16 +44,16 @@
                     </div>
                 </div>
             </div>
-            <div style="overflow: auto; max-height: 16em;">
+            <div style="overflow: auto; max-height: 13em;">
                 <p>
-                   
-                     <div class="d-flex flex-row justify-content-between px-4" style="font-size: 4.5vw;">
+
+                <div class="d-flex flex-row justify-content-between px-4" style="font-size: 4.5vw;">
                     <div class="d-flex flex-column">
                         {{#match data.pet_type "Others"}}
-                            <span><i class="fa-solid fa-paw"></i> {{data.breed_others}}</span>
+                        <span><i class="fa-solid fa-paw"></i> {{data.breed_others}}</span>
                         {{/match}}
                         {{#notmatch data.pet_type "Others"}}
-                            <span><i class="fa-solid fa-paw"></i> {{data.breed}}</span>
+                        <span><i class="fa-solid fa-paw"></i> {{data.breed}}</span>
                         {{/notmatch}}
                         <span><i class="fa-solid fa-mars-and-venus"></i> {{data.gender}}</span>
                         <span><i class="fa-solid fa-thumbs-up"></i> {{data.pet_likes}}</span>
@@ -78,7 +78,8 @@
 
             <div class="d-flex justify-content-center align-items-center text-center py-2"
                 style="height: 80px; border-top: 1px solid rgb(219, 219, 219);">
-                <img alt="Reject icon" title="Reject" src="/img/reject.png" class="mx-1" style="max-height:70%;" onclick="alert('Rejected.')">
+                <img alt="Reject icon" title="Reject" src="/img/reject.png" class="mx-1" style="max-height:70%;"
+                    onclick="alert('Rejected.')">
                 <form method="post" id="form_match" class="mx-2">
                     <button type="submit" class="btn" title="Match">
                         <img alt="Match icon" src="/img/logo.png" class="mx-1 w-50" style="max-height:120%;">
