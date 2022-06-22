@@ -12,7 +12,7 @@ const petService = {
       const pets = await Pet.find()
         .where("owner_id")
         .ne(user._id)
-        .where('status')
+        .where("status")
         .equals(Pet.getStatuses().FOR_MATCHING)
         .populate("uploads")
         .lean()
@@ -22,6 +22,19 @@ const petService = {
     } catch (error) {
       throw error;
     }
+  },
+  getOneOwnedByUser: async ({ user_id }) => {
+    const pet = await Pet.findOne({ owner_id: user_id })
+      .populate("uploads")
+      .lean()
+      .exec();
+
+    return pet;
+  },
+  getOneById: async (id) => {
+    const pet = await Pet.findById(id).populate("uploads").lean().exec();
+
+    return pet;
   },
 };
 
