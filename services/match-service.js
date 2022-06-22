@@ -65,7 +65,6 @@ const matchService = {
       options: { lean: true },
     });
 
-    console.log({ matchedPets, selected_pet_id: selectedPetId });
     return { matchedPets };
   },
 };

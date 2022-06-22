@@ -1,4 +1,3 @@
-const chatService = require("../../services/chat-service");
 const matchService = require("../../services/match-service");
 const petService = require("../../services/pet-service");
 
@@ -8,11 +7,8 @@ const chatController = {
 
     let selected_pet_id = req.query.pet_id;
     if (selected_pet_id) {
-      console.log("meron", selected_pet_id);
       selectedPet = await petService.getOneById(selected_pet_id);
     } else {
-      console.log("wala", selected_pet_id);
-
       selectedPet = await petService.getOneOwnedByUser({
         user_id: req.user._id,
       });
@@ -31,6 +27,7 @@ const chatController = {
           matchedWith: p.pet_id.name,
         })),
       },
+      user: req.user,
     };
 
     res.render("chat", returnObj);
