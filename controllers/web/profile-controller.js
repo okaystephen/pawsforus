@@ -1,20 +1,19 @@
 const { getTotalPetMatches } = require("../../services/pet-service");
 const Pet = require("../../models/Pet");
-// const {ObjectId} = require('mongoose')
 
 const profileController = {
   show: async (req, res) => {
     try {
       const { user } = req;
-      const total_count = await getTotalPetMatches(user)
-      console.log(total_count[0].count)
-      const pets = await Pet.find({ owner_id: user._id, deleted: false})
+      const total_count = await getTotalPetMatches(user);
+      if (!total_count.length) total_count[0] = { count: 0 };
+      const pets = await Pet.find({ owner_id: user._id, deleted: false })
         .limit(3)
         .sort({ created_at: -1 })
         .populate("uploads")
         .lean()
         .exec();
-      
+
       const all_pets = await Pet.find({ owner_id: user._id, deleted: false })
         .sort({ created_at: -1 })
         .populate("uploads")
@@ -35,7 +34,12 @@ const profileController = {
         .populate("uploads")
         .lean()
         .exec();
-      return res.render("pet-profile", { layout: false, data: pet, user: req.user, q: req.query.id });
+      return res.render("pet-profile", {
+        layout: false,
+        data: pet,
+        user: req.user,
+        q: req.query.id,
+      });
     } catch (error) {
       return res.status(500).send(error);
     }
