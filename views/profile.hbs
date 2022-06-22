@@ -34,7 +34,8 @@
     <div class="container-fluid p-4 body-container d-flex flex-column justify-content-start align-items-left">
         <div class="text-left d-flex justify-content-between align-items-center">
             <h1 class="header-gradient pt-2">My Account</h1>
-            <i class="fa-solid fa-gear fa-2x header-gradient"></i>
+            <button type="button" class="btn" id="btn_edit_user_profile" title="Edit User Profile"><i
+                    class="fa-solid fa-gear fa-2x header-gradient"></i></button>
         </div>
         <div class="pt-2 pb-5 mt-2 mb-5 overflow-auto">
             {{!-- Personal Info --}}
@@ -54,7 +55,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h4><b>My Pets <a href="/add-pet"><i
                                         class="header-gradient fa-solid fa-circle-plus fa-1x"></i></a></b></h4>
-                        <div class="header-gradient" style="font-weight: 400;"><a href="/profile/all-pets">View All <i class="fa-solid fa-arrow-right-long"></i></a></div>
+                        <div class="header-gradient" style="font-weight: 400;"><a href="/profile/all-pets">View All <i
+                                    class="fa-solid fa-arrow-right-long"></i></a></div>
                     </div>
                     {{#each data.pets}}
                     <div class="py-2 d-flex justify-content-between align-items-center">
@@ -82,7 +84,9 @@
                 <div class="col">
                     <h4><b>Analytics</b></h4>
                     <div class="text-center d-flex justify-content-center align-items-center">
-                        <h1 class="header-gradient" style="border-style: solid; border-color: #FFE03C; padding: 10px; border-radius: 50%; width: 70px; height: 70px">{{data.total_count}}</h1>
+                        <h1 class="header-gradient"
+                            style="border-style: solid; border-color: #FFE03C; padding: 10px; border-radius: 50%; width: 70px; height: 70px">
+                            {{data.total_count}}</h1>
                         <div class="ml-2 pb-1">matches this month</div>
                     </div>
                 </div>
@@ -93,14 +97,16 @@
                 <div class="col">
                     <h4><b>Matches Per Pet</b></h4>
                     <div class="py-2 d-flex align-items-center">
-                         {{#each data.all_pets}}
-                            <div class="d-flex flex-column align-items-center" style="margin: 5px;">
-                            <img src="{{this.uploads.[0].public_url}}" class="rounded-circle" alt="Photo of {{this.name}}" width="90vw"> 
+                        {{#each data.all_pets}}
+                        <div class="d-flex flex-column align-items-center" style="margin: 5px;">
+                            <img src="{{this.uploads.[0].public_url}}" class="rounded-circle"
+                                alt="Photo of {{this.name}}" width="90vw">
                             <b>{{this.name}}</b>
                             <div>{{this.match_count}}</div>
                         </div>
                         {{else}}
-                        <p>You don't have any pets. <a class="header-gradient font-weight-normal" href="/add-pet">Create one
+                        <p>You don't have any pets. <a class="header-gradient font-weight-normal" href="/add-pet">Create
+                                one
                                 now!</a></p>
                         {{/each}}
                     </div>
@@ -160,6 +166,25 @@
         $(e).parent().remove()
     }
 
+    function editUserProfile(e) {
+        const newName = prompt('Edit Your Name', '{{data.user.full_name}}')
+        $.ajax({
+            url: `/api/users/{{data.user._id}}`,
+            method: 'PUT',
+            data: { full_name: newName }
+        }).then(function (data) {
+            console.log(data)
+            alert('New name: ' + data.full_name)
+            window.location.reload()
+        }).fail(function (xhr) {
+            console.log(xhr)
+            alert('Failed to update user profile.')
+        })
+    }
+
+    $('#btn_edit_user_profile').on('click', function (e) {
+        editUserProfile(e)
+    })
 
     $('#modalDeletePet').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal

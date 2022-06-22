@@ -4,7 +4,7 @@ const User = require("../../models/User");
 const userController = {
   index: async (req, res) => {
     try {
-      const users = await User.find({}, '-password').lean().exec();
+      const users = await User.find({}, "-password").lean().exec();
       return res.json({ data: users });
     } catch (error) {
       return res.status(500).send(error);
@@ -12,7 +12,9 @@ const userController = {
   },
   show: async (req, res) => {
     try {
-      const user = await User.findById(req.params.id, '-password').lean().exec();
+      const user = await User.findById(req.params.id, "-password")
+        .lean()
+        .exec();
       return res.json({ data: user });
     } catch (error) {
       return res.status(500).send(error);
@@ -32,7 +34,7 @@ const userController = {
       const updated = await User.findByIdAndUpdate(
         id,
         { full_name },
-        { returnDocument: "after" }
+        { returnDocument: "after", projection: "-password" }
       ).exec();
 
       if (!updated) {
@@ -43,6 +45,7 @@ const userController = {
 
       return res.json(updated);
     } catch (error) {
+      console.log(error);
       return res.status(500).send({ errors: error });
     }
   },
