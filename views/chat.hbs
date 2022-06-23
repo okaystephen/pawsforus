@@ -31,8 +31,8 @@
         <div class="text-left p-4 d-flex justify-content-between align-items-center">
             <h1 class="header-gradient">Chat</h1>
             {{#unless selectedPet}}
-            <img src="{{data.selectedPet.uploads.[0].public_url}}" class="nav-icon" id="selected_img" width="60vw"
-                style="border-radius: 100px;" data-toggle="modal" data-target="#selectModal">
+            <img src="{{data.selectedPet.uploads.[0].public_url}}" class="nav-icon rounded-circle" id="selected_img"
+                width="50vw" height="50vw" data-toggle="modal" data-target="#selectModal">
             {{/unless}}
         </div>
         {{#unless selectedPet}}
@@ -43,7 +43,7 @@
         <a href="/chatbox" class="chatbox border-top">
             <div class="row px-4 d-flex justify-content-start align-items-center"
                 style="height: 100px; border-bottom: 1px solid rgb(210, 210, 210);">
-                <img src="{{this.uploads.[0].public_url}}" width="60vw" style="border-radius: 100px;">
+                <img class="rounded-circle" src="{{this.uploads.[0].public_url}}"  width="50vw" height="50vw" style="border-radius: 100px;">
                 <div class="mx-3">
                     <b style="font-size: 1.5em;">{{this.name}}</b> <br />
                 </div>
@@ -68,7 +68,7 @@
                     {{#each user.pets}}
                     <div class="d-flex flex-row justify-content-start align-items-center py-3" id="{{this._id}}"
                         onclick="selectPet('{{this._id}}','{{this.uploads.[0].public_url}}')">
-                        <img src="{{this.uploads.[0].public_url}}" width="60vw" style="border-radius: 100px;">
+                        <img src="{{this.uploads.[0].public_url}}"  width="50vw" height="50vw" class="rounded-circle">
                         <div class="ml-2">{{this.name}}</div>
                     </div>
                     {{/each}}
