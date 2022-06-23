@@ -85,8 +85,8 @@
                         <img alt="Match icon" src="/img/logo.png" class="mx-1 w-50" style="max-height:120%;">
                     </button>
                 </form>
-                <img alt="Your candidate pet's icon" src="/img/dog.png" title="Select your candidate pet" class="mx-1"
-                    style="max-height:70%; border-radius: 100px;" id="candidate-img" data-toggle="modal"
+                <img alt="Your candidate pet's icon" src="/img/dog.png" title="Select your candidate pet"
+                    class="mx-1 rounded-circle" width="50vw" height="50vw" id="candidate-img" data-toggle="modal"
                     data-target="#selectModal">
             </div>
         </div>
@@ -106,7 +106,7 @@
                     {{#each user.pets}}
                     <div class="d-flex flex-row justify-content-start align-items-center py-3" id="{{this._id}}"
                         onclick="selectPet('{{this._id}}','{{this.uploads.[0].public_url}}')">
-                        <img src="{{this.uploads.[0].public_url}}" width="60vw" style="border-radius: 100px;">
+                        <img src="{{this.uploads.[0].public_url}}"  width="50vw" height="50vw" class="rounded-circle">
                         <div class="ml-2">{{this.name}}</div>
                     </div>
                     {{/each}}
