@@ -1,4 +1,6 @@
-# pawsforus
+# PawsForUs
+
+PawsForUs is a geosocial networking application that allows users to meet other pet owners. The application also enables users to sell, buy, or adopt a pet.
 
 ## Prerequisites
 
