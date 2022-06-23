@@ -14,6 +14,14 @@ const chatController = {
       });
     }
 
+    if (!selectedPet) {
+      return res.render("chat", {
+        layout: false,
+        data: { matchedPets: null },
+        user: req.user,
+      });
+    }
+
     const { matchedPets } = await matchService.getMatchedPets({
       selectedPetId: selectedPet._id,
     });
