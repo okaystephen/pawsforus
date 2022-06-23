@@ -6,13 +6,14 @@ PawsForUs is a geosocial networking application that allows users to meet other 
 
 1. NodeJS
 1. npm
+1. MongoDB
 
 ## Setting up locally
 
 1. Clone this repo. `git clone https://github.com/okaystephen/pawsforus.git`
 1. Navigate to the root directory.
 1. Install dependencies. `npm i`
-1. Copy `.env.example` to `.env`.
+1. Copy `.env.example` to `.env` and supply the required information.
 1. Run the server. `npm run dev`
 
 ## Project structure
@@ -35,9 +36,11 @@ PawsForUs is a geosocial networking application that allows users to meet other 
 ├─ routes/
 │  ├─ api/              // for REST API
 │  ├─ web/              // for rendering views
+├─ services/            // business logic
 ├─ storage/
 │  ├─ app/
 │  │  ├─ public/        // file uploads during development
+├─ validators/
 ├─ views/
 
 ```
